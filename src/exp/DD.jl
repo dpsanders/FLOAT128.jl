@@ -1,4 +1,3 @@
-
 function exp(a::DD)
    aa=TD(a.hi,a.lo,zero(Float64))
    aa=exp(aa)
