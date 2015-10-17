@@ -29,7 +29,7 @@
 | sinh  | -16..16   | 103 | 6e-32 |
 | cosh  | -16..16   | 103 | 6e-32 |
 | tanh  | -16..16   | 103 | 6e-32 |
-| csch, sech, coth  | | similarly  |  |
+| csch, sech, coth  | | accordingly  |  |
 |      |            |     |       |
 | asin  | -1..1     | 106 | 2e-32 |
 | acos  | -1..1     | 106 | 2e-32 |
