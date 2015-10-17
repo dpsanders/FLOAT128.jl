@@ -17,9 +17,9 @@ include("eft/single.jl")
 include("eft/double.jl")
 include("eft/triple.jl")
 
-# working types (double-double and triple-double)
+# working types
 include("types.jl")
-include("const/DD.jl")
+include("const/DD.jl")   
 include("const/TD.jl")
 
 # magnitude: comparison and subnumeric composition
@@ -27,10 +27,10 @@ include("mag/DD.jl")
 include("mag/TD.jl")
 
 # arithmetic and arithmetic support
-include("arith/DDsupp.jl")
-include("arith/TDsupp.jl")
 include("arith/DD.jl")
 include("arith/TD.jl")
+include("arith/DDsupp.jl")
+include("arith/TDsupp.jl")
 
 # integer powers, reciprocal roots
 include("pow/DD.jl")
