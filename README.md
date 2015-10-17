@@ -15,19 +15,13 @@
 | exp  | -512..512   | 107 | 3e-33 |
 | log  |    1..512   | 107 | 3e-33 |
 |      |             |     |       |
-| sin  | -2pi..2pi   | 103 | 1e-31 |
-| cos  | -2pi..2pi   | 103 | 1e-31 |
-| tan  | -2pi..2pi   | 103 | 1e-31 |
+| sin, cos, tan  | -2pi..2pi   | 103 | 1e-31 |
 | csc, sec, cot  | | accordingly  |  |
 |      |             |     |       |
-| sin  | -8pi..8pi   | 100 | 6e-31 |
-| cos  | -8pi..8pi   | 100 | 6e-31 |
-| tan  | -8pi..8pi   | 10- | 6e-31 |
+| sin, cos, tan  | -8pi..8pi   | 100 | 6e-31 |
 | csc, sec, cot  | | accordingly  |  |
 |      |             |     |       |
-| sinh  | -16..16   | 103 | 6e-32 |
-| cosh  | -16..16   | 103 | 6e-32 |
-| tanh  | -16..16   | 103 | 6e-32 |
+| sinh, cosh, tanh  | -16..16   | 103 | 6e-32 |
 | csch, sech, coth  | | accordingly  |  |
 |      |            |     |       |
 | asin  | -1..1     | 106 | 2e-32 |
