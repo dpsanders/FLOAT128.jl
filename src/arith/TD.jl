@@ -1,3 +1,8 @@
+#=
+#    Internal Use Only
+=#
+
+
 function renormAs3{T<:Float64}(c0::T, c1::T, c2::T, c3::T)
   if isinf(c0)
     return c0,zero(Float64),zero(Float64),zero(Float64)
