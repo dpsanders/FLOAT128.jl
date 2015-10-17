@@ -214,3 +214,11 @@ function (/)(a::TD, b::TD)
   TD(q0, q1, q2)
 end
 
+
+function hypot(a::TD, b::TD)
+    a = abs(a)
+    b = abs(b)
+    t, x = min(a,b), max(a,b)
+    t = t/a
+    x * sqrt(1.0 + t*t)
+end
