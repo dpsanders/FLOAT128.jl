@@ -1,7 +1,7 @@
 # FLOAT125.jl
 100+ valid significand bits for elementary functions with conventionally small values.
 
-  relative errors (max found in range) *24,000 double-double values each function*
+  relative errors (*max found with 24,000 random double-double values each function*)
 
 
 | func | over | good bits | rel err |
