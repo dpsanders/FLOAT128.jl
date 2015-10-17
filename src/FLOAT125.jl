@@ -34,6 +34,7 @@ include("arith/TDsupp.jl")
 
 # integer powers, reciprocal roots
 include("pow/DD.jl")
+include("pow/TD.jl")
 
 # log, exp
 include("exp/DD.jl")
