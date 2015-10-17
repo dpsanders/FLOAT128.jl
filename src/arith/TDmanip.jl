@@ -77,6 +77,13 @@ end
     a.hi >= zero(Float64) ? floor(a) : ceil(a)
 end
 
+"""
+stretch is the opposite of trunc()
+it extends to the nearest integer away from zero
+"""
+@inline function (stretch)(a::TD)
+    a.hi >= zero(Float64) ? ceil(a) : floor(a)
+end
 
 function fld{T<:TD}(a::T,b::T)
     if (b.hi == zero(Float64))
