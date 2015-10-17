@@ -2,9 +2,8 @@
 100+ valid significand bits for elementary functions with conventionally small values.
 
   relative errors (max found in range)\\
-  (24,000 rand valuess in given range)
+  (24,000 rand double-double values)
 
-                          good bits relerr
 
 | func | over | good bits | rel err |
 |------|------|-----------|---------|
