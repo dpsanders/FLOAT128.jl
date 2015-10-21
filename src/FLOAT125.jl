@@ -11,6 +11,7 @@ module FLOAT125
 export Float125
 
 # include
+include("types.jl")
 
 # error-free transformations by number of args in & vals out
 include("eft/single.jl")
