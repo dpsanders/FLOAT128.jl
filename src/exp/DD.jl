@@ -149,7 +149,7 @@ function expGT0(a::DD)
     end
 
     if a.hi > 1.0
-      if a.hi <= 21.0
+      if a.hi <= 72.0
         ddidx = DD(floor(a.hi))
         idx = floor(Int,a.hi)
         expint = dd_exp_int[idx]
