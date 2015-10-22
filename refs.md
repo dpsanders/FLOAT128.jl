@@ -2,6 +2,9 @@
 "Some Functions Computaable with a Fused-mac"
 by Sylvie Boldo and Jean-Michel Muller
 
+Modern Computer Arithmetic
+by Richard P. Brent and Paul Zimmermann
+
 "Algorithms for Quad-Double Precision Floating Point Arithmetic"
 by Yozo Hida, Xiaoy S. Li, David H. Bailey
 
@@ -13,3 +16,4 @@ by Christoph Quirin Lauter
 
 "Accurate Floating-Point Summation Part I: Faithful Rounding"
 by Siegfried M. Rump, Takeshi Ogita, Shin'ichi Oishi
+
