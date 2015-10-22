@@ -108,10 +108,68 @@ end
 
 # a <= 0.15
 function tan_taylor(a::DD)
-    if (a.hi <= 0.140625) # 9/64
+    if (a.hi <= 9.0/64.0)
         tan_taylor_series(a)
     else
         s,c = sincos_taylor(a)
         s/c
     end
+end
+
+function sinpio2(a::DD)
+    if a.hi == zero(Float64)
+        return zero(DD)
+    end
+    if (a >= dd_pi_over_4)
+        b = dd_pi_over_2 - a
+        if (b.hi == zero(Float64))
+           one(DD)
+        else
+           cos_taylor(b)
+        end
+    else
+        sin_taylor(a)
+    end
+end
+
+function sin02pi(a::DD)
+    @assert(a >= zero(DD))
+    sgnbit = false
+    if (a.hi == zero(Float64)) | (a == dd_twopi)
+        return zero(DD)
+    end
+    b = a
+    if a >= dd_pi
+        sgnbit = !sgnbit
+        a = dd_twopi - a
+    end
+    # a in [0, pi)
+    if a >= dd_pi_over_2
+        a = dd_pi - a
+    end
+    # a in [0,pi/2)
+    @assert(a >= zero(DD))
+    @assert(a <= dd_pi_over_2)
+    s = sinpio2(a)
+    sgnbit ? -s : s
+end
+
+function mod2pi(a::DD)
+    mod(a,dd_twopi)
+end
+
+function sin(a::DD)
+    sgnbit, aa = signbit(a),abs(a)
+
+    if aa.hi == zero(Float64)
+        return aa
+    end
+    if aa < dd_pi_over_4
+        aa = sin_taylor(aa)
+    elseif aa >= dd_twopi
+        aa = sin02pi( mod2pi(a) )
+    else
+        aa = sin02pi(a)
+    end
+    sgnbit ? -aa : aa
 end
