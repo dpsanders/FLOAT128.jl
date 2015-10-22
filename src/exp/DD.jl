@@ -359,3 +359,13 @@ function log(x::DD)
         logIter(x)
     end
 end
+
+
+function log2(x::DD)
+    log(x) / dd_log2
+end
+
+function log10(x::DD)
+    log(x) / dd_log10
+end
+
