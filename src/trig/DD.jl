@@ -168,9 +168,9 @@ function sin(a::DD)
     if aa < dd_pi_over_4
         aa = sin_taylor(aa)
     elseif aa >= dd_twopi
-        aa = sin02pi( mod2pi(a) )
+        aa = sin02pi( mod2pi(aa) )
     else
-        aa = sin02pi(a)
+        aa = sin02pi(aa)
     end
     sgnbit ? -aa : aa
 end
