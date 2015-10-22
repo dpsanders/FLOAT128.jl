@@ -154,6 +154,7 @@ function sin02pi(a::DD)
     sgnbit ? -s : s
 end
 
+# !!make it better and put it in arith/DDsupp.jl!!
 function mod2pi(a::DD)
     mod(a,dd_twopi)
 end
