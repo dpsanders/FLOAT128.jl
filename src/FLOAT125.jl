@@ -5,6 +5,21 @@ module FLOAT125
 # using
 
 # import
+import Base: convert, promote_rule,
+             zero, one, isinf, isnan, isfinite,
+             (-), abs, sign, signbit, copysign, flipsign,
+             isequal, isless, (<),(<=),(==),(>=),(>),
+             (+),(*),(/),(\),
+             round, floor, ceil, trunc, fld, cld,
+             ldexp, frexp, modf,
+             div, rem, divrem, mod, fldmod, (%),
+             sqrt, hypot, (^),
+             exp, log, log2, log10, expm1, log1p,
+             sin, cos, tan, csc, sec, cot,
+             sinh, cosh, tanh, csch, sech, coth,
+             asin, acos, atan, acsc, asec, acot, atan2,
+             asinh, acosh, atanh, acsch, asech, acoth,
+             string, show, showcompact, parse, hex
 
 # export
 
