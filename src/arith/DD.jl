@@ -84,6 +84,13 @@ end
 (*)(a::DD,b::Signed) = (*)(a,convert(Float64,b))
 (*)(a::Signed,b::DD) = (*)(convert(Float64,a),b)
 
+
+function fma{T<:DD}(a::T,b::T,c::T)
+    p = a*TD(b)
+    p += c
+    DD(p.hi,p.md)
+end
+
 # reciprocation
 #=
 # faster, less accurate
