@@ -3,7 +3,7 @@
 =#
 
 
-@inline function renormAs3{T<:Float64}(c0::T, c1::T, c2::T, c3::T)
+function renormAs3{T<:Float64}(c0::T, c1::T, c2::T, c3::T)
   if isinf(c0)
     return c0,zero(Float64),zero(Float64),zero(Float64)
   end
@@ -67,7 +67,7 @@ end
 # this is less rigorous addition method -- the
 # low order bits are dropped converting to DD
 
-@inline function (+){T<:TD}(a::T,b::T)
+function (+){T<:TD}(a::T,b::T)
     s0 = a.hi + b.hi
     s1 = a.md + b.md
     s2 = a.lo + b.lo
@@ -105,7 +105,7 @@ end
 # subtract
 
 # this is the sloppier subtract, we do not need all the bits
-@inline (-)(a::TD,b::TD) = (+)(a,-b)
+(-)(a::TD,b::TD) = (+)(a,-b)
 
 
 # multiply
@@ -152,7 +152,7 @@ end
 # this is less rigorous multiply method -- the
 # low order bits are dropped converting to DD
 
-@inline function (*){T<:TD}(a::T,b::T)
+function (*){T<:TD}(a::T,b::T)
   p0,q0 = eftProd2(a.hi, b.hi)
   p1,q1 = eftProd2(a.hi, b.md)
   p2,q2 = eftProd2(a.md, b.hi)
