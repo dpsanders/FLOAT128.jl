@@ -4,5 +4,5 @@
 |arith| arithmetic functions |
 |const| constant values |
 |eft | error free transformations |
-|exp | exp(), log(), log2(), log10() |
+|exp | exp, expm1, log, log1p, log2, log10 |
 
