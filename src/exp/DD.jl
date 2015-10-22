@@ -1,5 +1,5 @@
 
-#const dd_n_inv_fact = 32;
+const dd_n_inv_fact = 32;
 const dd_inv_fact = DD[
   DD(1.0,0.0),
   DD(0.5,0.0),
@@ -176,6 +176,18 @@ function exp(a::DD)
     else
          expGT0(a)
     end
+end
+
+
+function expm1(a::DD)
+   u = exp(a)
+   if (u == one(DD))
+       x
+   elseif (u-1.0 == -one(DD))
+       -one(DD)
+   else
+       a*(u-1.0) / log(u)
+   end
 end
 
 dd_n_log_int = 64;
@@ -360,6 +372,14 @@ function log(x::DD)
     end
 end
 
+function log1p(x::DD)
+    u = 1.0 + x
+    if u == one(DD)
+        x
+    else
+        log(u)*x/(u-1.0)
+    end
+end
 
 function log2(x::DD)
     log(x) / dd_log2
