@@ -72,26 +72,26 @@ const dd_exp_ints = DD[
     DD(7.896296018268069e13, 0.007660978022635108),
 ];
 
+
 function exp_taylor(a::DD)
   x = a
   x2 = x*x
   x3 = x*x2
   x4 = x2*x2
-  x8 = x4*x4
-  x12 = x4*x8
-  x16 = x8*x8
-  x20 = x8*x12
-  x24 = x12*x12
+  x5 = x2*x3
+  x10 = x5*x5
+  x15 = x5*x10
+  x20 = x10*x10
+  x25 = x10*x15
 
-  z = x + dd_inv_fact[2]*x2 + dd_inv_fact[3]*x3
-  z2 = x4 * (dd_inv_fact[4] + x*dd_inv_fact[5] + x2*dd_inv_fact[6] + x3*dd_inv_fact[7])
-  z3 = x8 * (dd_inv_fact[8] + x*dd_inv_fact[9] + x2*dd_inv_fact[10] + x3*dd_inv_fact[11])
-  z4 = x12 * (dd_inv_fact[12] + x*dd_inv_fact[13] + x2*dd_inv_fact[14] + x3*dd_inv_fact[15])
-  z5 = x16 * (dd_inv_fact[16] + x*dd_inv_fact[17] + x2*dd_inv_fact[18] + x3*dd_inv_fact[19])
-  z6 = x20 * (dd_inv_fact[20] + x*dd_inv_fact[21] + x2*dd_inv_fact[22] + x3*dd_inv_fact[23])
-  z7 = x24 * (dd_inv_fact[24] + x*dd_inv_fact[25] + x2*dd_inv_fact[26] + x3*dd_inv_fact[27])
+  z = x + dd_inv_fact[2]*x2 + dd_inv_fact[3]*x3 + dd_inv_fact[4]*x4
+  z2 = x5 * (dd_inv_fact[5] + x*dd_inv_fact[6] + x2*dd_inv_fact[7] + x3*dd_inv_fact[8] + x4*dd_inv_fact[9])
+  z3 = x10 * (dd_inv_fact[10] + x*dd_inv_fact[11] + x2*dd_inv_fact[12] + x3*dd_inv_fact[13] + x4*dd_inv_fact[14])
+  z4 = x15 * (dd_inv_fact[15] + x*dd_inv_fact[16] + x2*dd_inv_fact[17] + x3*dd_inv_fact[18] + x4*dd_inv_fact[19])
+  z5 = x20 * (dd_inv_fact[20] + x*dd_inv_fact[21] + x2*dd_inv_fact[22] + x3*dd_inv_fact[23] + x4*dd_inv_fact[24])
+  z6 = x25 * (dd_inv_fact[25] + x*dd_inv_fact[26] + x2*dd_inv_fact[27])
 
-  (((((z7+z6)+z5)+z4)+z3)+z2)+z + one(DD)
+  ((((z6+z5)+z4)+z3)+z2)+z + one(DD)
 end
 
 
