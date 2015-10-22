@@ -54,7 +54,6 @@ include("pow/TD.jl")
 
 # log, exp
 include("exp/DD.jl")
-include("exp/TD.jl")
 
 # io
 include("io/DD.jl")
