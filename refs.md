@@ -5,6 +5,10 @@ by Sylvie Boldo and Jean-Michel Muller
 Modern Computer Arithmetic
 by Richard P. Brent and Paul Zimmermann
 
+"The Right Way To Calculate Stuff"
+by Don Hatch
+http://www.plunk.org/~hatch/rightway.php
+
 "Algorithms for Quad-Double Precision Floating Point Arithmetic"
 by Yozo Hida, Xiaoy S. Li, David H. Bailey
 
