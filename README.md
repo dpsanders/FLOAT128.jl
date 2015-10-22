@@ -1,4 +1,5 @@
-# FLOAT125.jl
+# FLOAT125.jl  
+### *(work in progress -- incomplete)*
 100+ valid significand bits for elementary functions with conventionally small values.
 
   relative errors (*max found with 24,000 random double-double values each function*)
