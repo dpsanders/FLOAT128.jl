@@ -1,5 +1,5 @@
 
-#const dd_n_inv_fact = 32;
+const dd_n_inv_fact = 32;
 const dd_inv_fact = DD[
   DD(1.0,0.0),
   DD(0.5,0.0),
