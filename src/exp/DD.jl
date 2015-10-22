@@ -465,7 +465,7 @@ const dd_recip_int = DD[
 ];
 
 
-function log_taylor(a::DD)
+function log1p_taylor(a::DD)
     x = a
     x2 = x*x
     x3 = x2*x
@@ -523,7 +523,7 @@ function log(x::DD)
         elseif (x.hi >= 1.1)
             logIter(x)
         else # 1.0 .. x .. 1.1
-            log_taylor(x-1.0)
+            log1p_taylor(x-1.0)
         end
     else
         logIter(x)
