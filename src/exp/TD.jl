@@ -97,25 +97,3 @@ function exp(a::TD)
   ldexp(s, convert(Int,m));
 end
 
-# Logarithm.  Computes log(x) in quad-double precision.
-#   This is a natural logarithm (i.e., base e).
-function log(a::TD)
-  if (a == one(TD))
-    return zero(TD)
-  elseif (a.hi == zero(Float64))
-    return TD(-Inf,-Inf,-Inf)
-  elseif (a.hi <= 0.0)
-    throw( ErrorException("log: Non-positive argument.") )
-    return td_NaN
-  end
-
-  x = log(a.hi);
-  xx = TD(x,zero(Float64),zero(Float64))
-
-  xx = xx + a * exp(-xx) - 1.0;
-  xx = xx + a * exp(-xx) - 1.0;
-  xx = xx + a * exp(-xx) - 1.0;
-
-  return xx
-end
-
