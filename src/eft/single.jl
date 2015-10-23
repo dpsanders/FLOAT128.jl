@@ -17,7 +17,6 @@ end
 #
 @inline function eftRecip(a::Float64)
      x = one(Float64)/a
-     y = fma(x,a,-1.0)
-     y = (y!=zero(Float64)) ? -y/a : y
-     x,y
+     y = fma(x,a,-1.0)/a
+     x,-y
 end
