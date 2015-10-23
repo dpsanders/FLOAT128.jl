@@ -2,36 +2,15 @@
 ### *(work in progress -- incomplete)*
 100+ valid significand bits for elementary functions with conventionally small values.
 
-  relative errors (*max found with 24,000 random double-double values each function*)
+### Why?
 
+typealias FP Float128
 
-| func | over | good bits | rel err |
-|------|------|-----------|---------|
-| sqrt | 1e-42..4e15 | 107 | 3e-33 |
-|      |             |     |       |
-| exp  | -50..50   | 104 | 5e-32 |
-| log  |    1..512   | 107 | 3e-33 |
-|      |             |     |       |
-| exp  | -300..300   | 103 | 6e-32 |
-| log  |    1..512   | 107 | 3e-33 |
-|      |             |     |       |
-| sin, cos  | -2pi..2pi   | 104 | 5e-32 |
-| tan  | -2pi..2pi   | 103 | 6e-32 |
-| csc, sec, cot  | | accordingly  |  |
-|      |             |     |       |
-| sin, cos  | -8pi..8pi   | 101 | 4e-31 |
-| tan  | -8pi..8pi   | 100 | 8e-31 |
-| csc, sec, cot  | | accordingly  |  |
-|      |             |     |       |
-| sinh, cosh, tanh  | -16..16   | 103 | 6e-32 |
-| csch, sech, coth  | | accordingly  |  |
-|      |            |     |       |
-| asin, acos  | -1..1     | 106 | 2e-32 |
-| atan  | -16..16   | 106 | 2e-32 |
-| acsc, asec, acot  | | accordingly  |  |
-|      |            |     |       |
-| asinh  | -1024..1024     | 106 | 2e-32 |
-| acosh  |  1..1024     | 106 | 2e-32 |
-| atanh  | -1..1   | 106 | 2e-32 |
-| acsch, asech, acoth  | | accordingly  |  |
+##### more arithmetic just works
+
+fl0=0.0;     fl1=0.1;     fl2=0.2;     fl3=0.3;
+fp0=FP(0.0); fp1=FP(0.1); fp2=FP(0.2); fp3=FP(0.3);
+
+fl0  !=  fl1+fl2+fl3-fl3-fl2-fl1
+fp0  ==  fp1+fp2+fp3-fp3-fp2-fp1
 
