@@ -1,9 +1,4 @@
-#=
-#    Internal Use Only
-=#
-
-
-function renormAs3{T<:Float64}(c0::T, c1::T, c2::T, c3::T)
+@inline function renormAs3{T<:Float64}(c0::T, c1::T, c2::T, c3::T)
   if isinf(c0)
     return c0,zero(Float64),zero(Float64),zero(Float64)
   end
@@ -32,7 +27,7 @@ function renormAs3{T<:Float64}(c0::T, c1::T, c2::T, c3::T)
   s0, s1, s2                       # s0, s1, s2, s3 # for renormAs4
 end
 
-@renorm function renorm{T<:Float64}(c0::T, c1::T, c2::T)
+function renorm{T<:Float64}(c0::T, c1::T, c2::T)
   s0=s1=s2=zero(Float64)
 
   if isinf(c0)
@@ -67,7 +62,7 @@ end
 # this is less rigorous addition method -- the
 # low order bits are dropped converting to DD
 
-function (+){T<:TD}(a::T,b::T)
+@inline function (+){T<:TD}(a::T,b::T)
     s0 = a.hi + b.hi
     s1 = a.md + b.md
     s2 = a.lo + b.lo
@@ -101,11 +96,17 @@ function (+){T<:TD}(a::T,b::T)
     TD(s0, s1, s2)
 end
 
+@inline (+)(a::TD,b::DD) = (+)(a,TD(b))
+@inline (+)(a::DD,b::TD) = (+)(TD(a),b)
+
 
 # subtract
 
 # this is the sloppier subtract, we do not need all the bits
-(-)(a::TD,b::TD) = (+)(a,-b)
+@inline (-)(a::TD,b::TD) = (+)(a,-b)
+
+@inline (-)(a::TD,b::DD) = (+)(a,TD(b))
+@inline (-)(a::DD,b::TD) = (+)(TD(a),b)
 
 
 # multiply
@@ -152,7 +153,7 @@ end
 # this is less rigorous multiply method -- the
 # low order bits are dropped converting to DD
 
-function (*){T<:TD}(a::T,b::T)
+@inline function (*){T<:TD}(a::T,b::T)
   p0,q0 = eftProd2(a.hi, b.hi)
   p1,q1 = eftProd2(a.hi, b.md)
   p2,q2 = eftProd2(a.md, b.hi)
@@ -179,6 +180,8 @@ function (*){T<:TD}(a::T,b::T)
   TD(p0,p1,s0)
 end
 
+@inline (*)(a::TD,b::DD) = (*)(a,TD(b))
+@inline (*)(a::DD,b::TD) = (*)(TD(a),b)
 
 # reciprocation
 
@@ -218,6 +221,43 @@ function (/)(a::TD, b::TD)
 
   TD(q0, q1, q2)
 end
+
+
+# powers
+
+
+
+# roots
+
+
+function sqrt(a::TD)
+  #   Perform the following Newton iteration:
+  #
+  #     x' = x + (1 - a * x^2) * x / 2;
+  #
+  #   which converges to 1/sqrt(a)
+
+  if a.hi==zero(Float64)
+    return a
+  end
+
+  if a.hi < zero(Float64)
+    throw( ErrorException("sqrt(TD) got a Negative argument.") )
+  end
+
+  r1 = recip(sqrt(DD(a.hi,a.md)))
+  r = TD(r1.hi,r1.lo,zero(Float64))
+  h = a * 0.5
+
+  r = r + (td_half - (h * (r*r))) * r
+  r = r + (td_half - (h * (r*r))) * r
+  r = r + (td_half - (h * (r*r))) * r
+
+  r*a
+end
+
+
+
 
 
 function hypot(a::TD, b::TD)
