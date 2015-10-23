@@ -14,8 +14,8 @@ DD{T<:Float64}(a::Tuple{T,T}) = DD(a[1],a[2])
 
 convert(::Type{DD}, a::Float64) = DD(a)
 convert(::Type{Float64}, a::DD) = a.hi
-convert(::Type{DD}, a::Signed) = DD(convert(Float64,a))
-convert{T<:Signed}(::Type{T}, a::DD) = convert(T,a.hi)+convert(T,a.lo)
+convert{T<:Integer}(::Type{DD}, a::T) = DD(convert(Float64,a))
+convert{T<:Integer}(::Type{T}, a::DD) = convert(T,floor(a.hi))+convert(T,round(a.lo))
 
 import Base:Tuple # needed??
 
@@ -89,10 +89,13 @@ TD{T<:Float64}(a::Tuple{T,T}) = TD(a[1],a[2],a[3])
 
 convert(::Type{TD}, a::Float64) = TD(a)
 convert(::Type{Float64}, a::TD) = a.hi
+convert{T<:Integer}(::Type{TD}, a::T) = TD(convert(Float64,a))
+convert{T<:Integer}(::Type{T}, a::TD) = convert(T,floor(a.hi))+convert(T,floor(a.md))+convert(T,round(a.lo))
+
 convert(::Type{TD}, a::DD) = TD(a.hi, a.lo, zero(Float64))
 convert(::Type{DD}, a::TD) = DD(a.hi, a.md)
-convert(::Type{TD}, a::Signed) = TD(convert(Float64,a))
-convert{T<:Signed}(::Type{T}, a::TD) = convert(T,a.hi)+(convert(T,a.md)+convert(T,a.lo))
+
+
 
 convert(::Type{TD}, a::Tuple{Float64}) = TD(a[1])
 convert(::Type{TD}, a::Tuple{Float64,Float64}) = TD(a[1],a[2])
