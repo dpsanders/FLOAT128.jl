@@ -1,3 +1,5 @@
+typedef Integers Union{Int128,Int64,Int32,Int16}
+
 """
 The internal structure is 128 bits given as a magnitude-ordered pair of Float64 values.\\
 The pair are *presumed* to be in cannonical form, where they do not overlap: hi⊕lo ≡ hi.\\
@@ -14,8 +16,8 @@ DD{T<:Float64}(a::Tuple{T,T}) = DD(a[1],a[2])
 
 convert(::Type{DD}, a::Float64) = DD(a)
 convert(::Type{Float64}, a::DD) = a.hi
-convert{T<:Integer}(::Type{DD}, a::T) = DD(convert(Float64,a))
-convert{T<:Integer}(::Type{T}, a::DD) = convert(T,floor(a.hi))+convert(T,round(a.lo))
+convert{T<:Integers}(::Type{DD}, a::T) = DD(convert(Float64,a))
+convert{T<:Integers}(::Type{T}, a::DD) = convert(T,floor(a.hi))+convert(T,round(a.lo))
 
 import Base:Tuple # needed??
 
@@ -89,8 +91,8 @@ TD{T<:Float64}(a::Tuple{T,T}) = TD(a[1],a[2],a[3])
 
 convert(::Type{TD}, a::Float64) = TD(a)
 convert(::Type{Float64}, a::TD) = a.hi
-convert{T<:Integer}(::Type{TD}, a::T) = TD(convert(Float64,a))
-convert{T<:Integer}(::Type{T}, a::TD) = convert(T,floor(a.hi))+convert(T,floor(a.md))+convert(T,round(a.lo))
+convert{T<:Integers}(::Type{TD}, a::T) = TD(convert(Float64,a))
+convert{T<:Integers}(::Type{T}, a::TD) = convert(T,floor(a.hi))+convert(T,floor(a.md))+convert(T,round(a.lo))
 
 convert(::Type{TD}, a::DD) = TD(a.hi, a.lo, zero(Float64))
 convert(::Type{DD}, a::TD) = DD(a.hi, a.md)
