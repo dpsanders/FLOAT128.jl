@@ -25,7 +25,9 @@ convert(::Type{Tuple}, a::DD) = (a.hi,a.lo)
 convert(::Type{Tuple{Float64,Float64}}, a::DD) = (a.hi,a.lo)
 
 promote_rule(::Type{DD}, ::Type{Float64}) = DD
-promote_rule(::Type{DD}, ::Type{Signed}) = DD
+promote_rule(::Type{DD}, ::Type{Float32}) = DD
+promote_rule(::Type{DD}, ::Type{Int64}) = DD
+promote_rule(::Type{DD}, ::Type{Int32}) = DD
 
 
 function clean(x::DD)
@@ -99,8 +101,9 @@ convert(::Type{Tuple}, a::TD) = (a.hi,a.md,a.lo)
 convert(::Type{Tuple{Float64,Float64,Float64}}, a::TD) = (a.hi,a.md,a.lo)
 
 promote_rule(::Type{TD}, ::Type{Float64}) = TD
-promote_rule(::Type{TD}, ::Type{Signed}) = TD
-promote_rule(::Type{TD}, ::Type{DD}) = TD
+promote_rule(::Type{TD}, ::Type{Float32}) = TD
+promote_rule(::Type{TD}, ::Type{Int64}) = TD
+promote_rule(::Type{TD}, ::Type{Int32}) = TD
 
 
 function clean(x::TD)
