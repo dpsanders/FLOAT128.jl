@@ -141,7 +141,6 @@ function (/){T<:DD}(a::T,b::T)
   DD(q1,q2)
 end
 
-
 function hypot(a::DD, b::DD)
     a = abs(a)
     b = abs(b)
