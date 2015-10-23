@@ -8,7 +8,7 @@ typealias FP Float128
 
 fp0=FP(0.0); fp1=FP(0.1); fp2=FP(0.2); fp3=FP(0.3);
 
-##### more arithmetic just works
+##### this works
 
 0.0  != 0.1+0.2+0.3 -0.3-0.2-0.1
 
