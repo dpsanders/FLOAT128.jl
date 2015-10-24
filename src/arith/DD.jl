@@ -128,12 +128,14 @@ function (recip)(b::DD)
 end
 =#
 
-function (recip)(b::DD)
-  hi,lo = eftRecip(b.hi)
+function (recip)(b::TD)
+   hi,lo = eftRecip(b.hi)
 
-  r = DD(hi,lo)
-  r = r + (one(DD) - r*b) * r
-  r * (one(DD) + (one(DD) - r*b))
+   r = TD(hi,-lo,zero(Float64))
+   r = r + (one(TD) - r*b) * r
+   r = r + (one(TD) - r*b) * r
+
+   r = r + (one(TD) - r*b) * r
 end
 
 
