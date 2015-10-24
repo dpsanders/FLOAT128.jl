@@ -2,6 +2,9 @@
 "Some Functions Computaable with a Fused-mac"
 by Sylvie Boldo and Jean-Michel Muller
 
+Fast Algorithms for High-Precision Computation of Elementary Functions
+Richard P. Brent, 2006
+
 Modern Computer Arithmetic
 by Richard P. Brent and Paul Zimmermann
 
