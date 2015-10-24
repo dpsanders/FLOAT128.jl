@@ -185,6 +185,7 @@ end
 
 # reciprocation
 
+#=
 function (recip)(b::TD)
   a = one(TD)
 
@@ -202,6 +203,17 @@ function (recip)(b::TD)
 
   TD(q0, q1, q2)
 end
+=#
+
+function (rcp)(b::TD)
+   hi,lo = eftRecip(b.hi)
+
+   r = TD(hi,-lo,zero(Float64))
+   r = r + (one(TD) - r*b) * r
+
+   r * (one(TD) + (one(TD) - r*b))
+end
+
 
 # division
 
