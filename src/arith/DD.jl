@@ -93,24 +93,11 @@ end
 
 
 # reciprocation
+
 #=
 # faster, less accurate
-function (recip)(b::DD)
-  q1 = one(Float64) / b.hi
-  r  = one(DD) - (q1 * b)
-
-  q2 = r.hi / b.hi
-  r = r - (q2 * b)
-
-  q3 = r.hi / b.hi
-
-  q1,q2 = eftSum2inOrder(q1, q2)
-  q1,q2 = eftSum3as2(q1,q2,q3)
-  DD(q1,q2)
-end
 =#
 
-#+
 function (recip)(b::DD)
   q1 = one(Float64) / b.hi
   r  = DD(one(TD) - q1*TD(b))
@@ -132,6 +119,7 @@ function (recip)(b::TD)
    hi,lo = eftRecip(b.hi)
 
    r = TD(hi,-lo,zero(Float64))
+   r = r + (one(TD) - r*b) * r
    r = r + (one(TD) - r*b) * r
    r = r + (one(TD) - r*b) * r
 
