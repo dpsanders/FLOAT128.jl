@@ -205,13 +205,15 @@ function (recip)(b::TD)
 end
 =#
 
-function (rcp)(b::TD)
+function (rcp)(b::TD)function (recip)(b::TD)
    hi,lo = eftRecip(b.hi)
 
    r = TD(hi,-lo,zero(Float64))
    r = r + (one(TD) - r*b) * r
+   r = r + (one(TD) - r*b) * r
+   r = r + (one(TD) - r*b) * r
 
-   r * (one(TD) + (one(TD) - r*b))
+   r = r + (one(TD) - r*b) * r
 end
 
 
