@@ -110,6 +110,7 @@ function (recip)(b::DD)
 end
 =#
 
+#+
 function (recip)(b::DD)
   q1 = one(Float64) / b.hi
   r  = DD(one(TD) - q1*TD(b))
@@ -125,6 +126,16 @@ function (recip)(b::DD)
   q1,q2 = eftSum3as2(q1,q2,q3)
   DD(q1,q2)
 end
+=#
+
+function (recip)(b::DD)
+  hi,lo = eftRecip(b.hi)
+
+  r = DD(hi,lo)
+  r = r + (one(DD) - r*b) * r
+  r * (one(DD) + (one(DD) - r*b))
+end
+
 
 # division
 
