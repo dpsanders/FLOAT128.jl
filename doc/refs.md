@@ -15,6 +15,11 @@ by Yozo Hida, Xiaoy S. Li, David H. Bailey
 "Efficient implementation of elementary functions in the medium-precision range"
 by Fredrik Johansson
 
+
+"High Precision Division and Square Root"
+by Alan H. Karp, Peter Markstein, revised 1994
+
+
 "Basic building blocks for a triple-double intermediate format"
 by Christoph Quirin Lauter
 
