@@ -229,34 +229,31 @@ end
 
 # roots
 
-
 function sqrt(a::TD)
-  #   Perform the following Newton iteration:
-  #
-  #     x' = x + (1 - a * x^2) * x / 2;
-  #
-  #   which converges to 1/sqrt(a)
+    if a.hi <= zero(Float64)
+       if a.hi == zero(Float64)
+           return zero(TD)
+       else
+           throw(ArgumentError("sqrt expects a nonnegative base"))
+       end
+    elseif (a.hi < 1.0e-18) | (a.hi > 1.0e18)
+        throw(ArgumentError("sqrt arg ($a) outside domain"))
+    end
 
-  if a.hi==zero(Float64)
-    return a
-  end
+    if (a.hi < 1.0e-7)  # -log2(1.0e-7) < (1/2) Float64 significand bits
+        return one(TD) / sqrt(one(TD)/a)
+    end
 
-  if a.hi < zero(Float64)
-    throw( ErrorException("sqrt(TD) got a Negative argument.") )
-  end
+    # initial approximation to 1/sqrt(a)
+    r = TD(one(Float64)/sqrt(a.hi), zero(Float64))
 
-  r1 = recip(sqrt(DD(a.hi,a.md)))
-  r = TD(r1.hi,r1.lo,zero(Float64))
-  h = a * 0.5
+    r = r + divby2( r * (one(TD) - (a*(r*r))) )
+    r = r + divby2( r * (one(TD) - (a*(r*r))) )
+    r = r + divby2( r * (one(TD) - (a*(r*r))) )
 
-  r = r + (td_half - (h * (r*r))) * r
-  r = r + (td_half - (h * (r*r))) * r
-  r = r + (td_half - (h * (r*r))) * r
-
-  r*a
+    r = a*r
+    divby2(r + a/r)
 end
-
-
 
 
 
