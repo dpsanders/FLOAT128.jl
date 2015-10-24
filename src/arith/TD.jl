@@ -250,6 +250,7 @@ function sqrt(a::TD)
     r = r + divby2( r * (one(TD) - (a*(r*r))) )
     r = r + divby2( r * (one(TD) - (a*(r*r))) )
     r = r + divby2( r * (one(TD) - (a*(r*r))) )
+    r = r + divby2( r * (one(TD) - (a*(r*r))) )
 
     r = a*r
     divby2(r + a/r)
