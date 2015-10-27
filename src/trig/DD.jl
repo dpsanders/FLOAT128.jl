@@ -297,15 +297,17 @@ function sinInCircle(radian::DD)
 end
 
 function sin(radian::DD)
-  if abs(radian) <= dd_pi_over_4
-      sin_taylor(radian)
-   elseif abs(radian) < dd_twopi
-      sinInCircle(radian)
+  isneg, aradian = signbit(radian.hi), abs(radian)
+  if aradian <= dd_pi_over_4
+      s = sin_taylor(aradian)
+   elseif aradian < dd_twopi
+      s = sinInCircle(aradian)
    else
-      r = mod2piAsTD(radian)
+      r = mod2piAsTD(aradian)
       ddr = DD(r.hi,r.md)
-      sinInCircle(ddr)*cos(r.lo)+sin(r.lo)*cos(ddr)
+      s = sinInCircle(ddr)*cos(r.lo)+sin(r.lo)*cos(ddr)
     end
+    isneg ? -s : s
 end
 
 #=
@@ -331,15 +333,36 @@ function cosInCircle(radian::DD)
 end
 
 function cos(radian::DD)
-   if abs(radian) <= dd_pi_over_4
+   aradian = abs(radian)
+   if aradian <= dd_pi_over_4
       cos_taylor(radian)
-   elseif abs(radian < dd_twopi)
-      cosInCircle(radian)
+   elseif aradian < dd_twopi
+      cosInCircle(aradian)
    else
-      r = mod2piAsTD(radian)
+      r = mod2piAsTD(aradian)
       ddr = DD(r.hi,r.md)
       cosInCircle(ddr)*cos(r.lo)-sinInCircle(ddr)*sin(r.lo)
     end
+end
+
+
+
+function sincos(radian::DD)
+  if abs(radian) <= dd_pi_over_4
+      s = sin_taylor(radian)
+   elseif abs(radian) < dd_twopi
+      s = sinInCircle(radian)
+   else
+      r = mod2piAsTD(radian)
+      ddr = DD(r.hi,r.md)
+      s = sinInCircle(ddr)
+      slo = sin(r.lo)
+      c = cosInCircle(ddr)
+      clo = cos(r.lo)
+      s = s*clo + c*slo
+   end
+   c = DD(sqrt(one(DD)-TD(s)*s))
+   s,copysign(c,cos(radian))
 end
 
 
@@ -364,23 +387,27 @@ function tanInCircle(radian::DD)
 end
 
 #=
-  for radian in [0,7*pi)
-      relerr precise tan(radian) ~3.3e-32 (104 bits)
-   for radian in [0,4096^3 *pi)
-      relerr precise sin(radian) ~5.5e-32 (103 bits)
+   for radian in [-8pi,8pi)
+      relerr tan(radian) ~4.1e-32 (104 bits)
+   for radian in [8pi,4096^3 *pi)
+      relerr tan(radian) ~6.2e-32 (103 bits)
    for radian > 4096^3 *pi
-      relerr 8e-29 (93 bits)
+      relerr 4.2e-29 (94 bits)
 =#
 function tan(radian::DD)
+   isneg, aradian = signbit(radian), abs(radian)
    if abs(radian.hi) < 9.0/64.0
-      tan_taylor(radian)
+      t = tan_taylor(aradian)
    elseif abs(radian < dd_twopi)
-      tanInCircle(radian)
+      t = tanInCircle(aradian)
    else
-      r = mod2piAsTD(radian)
+      r = mod2piAsTD(aradian)
       ddr = DD(r.hi,r.md)
-      tddr = tanInCircle(ddr)
-      t = tan(r.lo)
-      (tddr+t) / (1.0-tddr*t)
+      s = TD(sinInCircle(ddr))
+      c = TD(cosInCircle(ddr))
+      slo,clo = sin(r.lo),cos(r.lo)
+      s = s*clo+c*slo; c=c*clo-s*slo;
+      t = DD(s/c)
     end
+    isneg ? -t : t
 end
