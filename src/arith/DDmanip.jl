@@ -11,9 +11,15 @@ signbit(a::DD) = signbit(a.hi)
 flipsign(a::DD,b::DD) = DD(flipsign(a.hi,b.hi), flipsign(a.lo,b.hi))
 flipsign(a::DD,b::Float64) = DD(flipsign(a.hi,b), flipsign(a.lo,b))
 flipsign(a::DD,b::Integer) = DD(flipsign(a.hi,b), flipsign(a.lo,b))
-copysign(a::DD,b::DD) = DD(copysign(a.hi,b.hi), flipsign(a.lo,b.hi))
-copysign(a::DD,b::Float64) = DD(copysign(a.hi,b), flipsign(a.lo,b))
-copysign(a::DD,b::Integer) = DD(copysign(a.hi,b), flipsign(a.lo,b))
+
+function copysign(a::DD,b::Float64) = DD(copysign(a.hi,b), flipsign(a.lo,b))
+    if (b < zero(Float64))
+        a.hi < zero(Float64) ? a : -a
+    else
+        a.hi < zero(Float64) ? -a : a
+end
+copysign(a::DD,b::Integer) = copysign(a,convert(Float64,b))
+copysign(a::DD,b::DD) = copysign(a,b.hi)
 
 
 function (floorceil)(fn::Function, a::DD)
