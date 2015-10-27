@@ -96,17 +96,49 @@ end
     TD(s0, s1, s2)
 end
 
-@inline (+)(a::TD,b::DD) = (+)(a,TD(b))
-@inline (+)(a::DD,b::TD) = (+)(TD(a),b)
+
+function (+)(a::TD,b::DD)
+
+    s0 = a.hi + b.hi
+    s1 = a.md + b.lo
+
+    v0 = s0 - a.hi
+    v1 = s1 - a.md
+
+    u0 = s0 - v0
+    u1 = s1 - v1
+
+    w0 = a.hi - u0
+    w1 = a.md - u1
+
+    u0 = b.hi - v0
+    u1 = b.lo - v1
+
+    t0 = w0 + u0
+    t1 = w1 + u1
+
+    s1,t0 = eftSum2(s1, t0)
+    s2,t0,t1 = eftSum3(a.lo, t0, t1)
+    t0 += t1
+
+    #s0,s1,s2 = renormAs3(s0, s1, s2, t0)
+    s2 += t0
+    s1,s2 = eftSum2inOrder(s1,s2)
+    s0,s1 = eftSum2inOrder(s0,s1)
+
+    TD(s0, s1, s2)
+end
+
+(+)(a::DD,b::TD) = (+)(b,a)
 
 
 # subtract
 
 # this is the sloppier subtract, we do not need all the bits
-@inline (-)(a::TD,b::TD) = (+)(a,-b)
+(-)(a::TD,b::TD) = (+)(a,-b)
 
-@inline (-)(a::TD,b::DD) = (+)(a,TD(b))
-@inline (-)(a::DD,b::TD) = (+)(TD(a),b)
+(-)(a::TD,b::DD) = (+)(a,-b)
+(-)(a::DD,b::TD) = -((-)(b,a))
 
 
 # multiply
