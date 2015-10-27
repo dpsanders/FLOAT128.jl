@@ -411,3 +411,8 @@ function tan(radian::DD)
     end
     isneg ? -t : t
 end
+
+csc(radian:DDD) = recip( sin(radian) )
+sec(radian::DD) = recip( cos(radian) )
+cot(radian::DD) = recip( tan(radian) )
+
