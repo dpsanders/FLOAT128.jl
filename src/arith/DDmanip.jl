@@ -17,6 +17,7 @@ signbit(a::DD) = signbit(a.hi)
         a.hi < zero(Float64) ? a : -a
     else
         a.hi < zero(Float64) ? -a : a
+    end
 end
 @inline copysign(a::DD,b::Integer) = copysign(a,convert(Float64,b))
 @inline copysign(a::DD,b::DD) = copysign(a,b.hi)
