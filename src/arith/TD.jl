@@ -249,7 +249,6 @@ end
 
 # reciprocation
 
-#=
 function (recip)(b::TD)
   a = one(TD)
 
@@ -267,8 +266,9 @@ function (recip)(b::TD)
 
   TD(q0, q1, q2)
 end
-=#
 
+#=
+# correct, slower
 function (rcp)(b::TD)function (recip)(b::TD)
    hi,lo = eftRecip(b.hi)
 
@@ -279,7 +279,7 @@ function (rcp)(b::TD)function (recip)(b::TD)
 
    r = r + (one(TD) - r*b) * r
 end
-
+=#
 
 # division
 
