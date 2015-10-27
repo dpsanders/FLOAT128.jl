@@ -14,10 +14,12 @@ signbit(a::TD) = signbit(a.hi)
 
 flipsign(a::TD,b::TD) = TD(flipsign(a.hi,b.hi), flipsign(a.md,b.hi), flipsign(a.lo,b.hi))
 flipsign(a::TD,b::DD) = TD(flipsign(a.hi,b.hi), flipsign(a.md,b.hi), flipsign(a.lo,b.hi))
+flipsign(a::DD,b::TD) = DD(flipsign(a.hi,b.hi), flipsign(a.lo,b.hi))
 flipsign(a::TD,b::Float64) = TD(flipsign(a.hi,b), flipsign(a.md,b.hi), flipsign(a.lo,b))
 flipsign(a::TD,b::Integer) = TD(flipsign(a.hi,b), flipsign(a.md,b.hi), flipsign(a.lo,b))
 copysign(a::TD,b::TD) = TD(copysign(a.hi,b.hi), flipsign(a.md,b.hi), flipsign(a.lo,b.hi))
 copysign(a::TD,b::DD) = TD(copysign(a.hi,b.hi), flipsign(a.md,b.hi), flipsign(a.lo,b.hi))
+copysign(a::DD,b::TD) = DD(copysign(a.hi,b.hi), flipsign(a.lo,b.hi))
 copysign(a::TD,b::Float64) = TD(copysign(a.hi,b), flipsign(a.md,b.hi), flipsign(a.lo,b))
 copysign(a::TD,b::Integer) = TD(copysign(a.hi,b), flipsign(a.md,b.hi), flipsign(a.lo,b))
 
