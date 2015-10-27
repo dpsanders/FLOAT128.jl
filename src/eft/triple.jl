@@ -14,7 +14,7 @@ function eftSum3inOrder{T<:Float64}(a::T,b::T,c::T)
     x,y,z
 end
 
-function eftSum3as2{T<:Float64}(a::T,b::T,c::T)
+@inline function eftSum3as2{T<:Float64}(a::T,b::T,c::T)
     s,t = eftSum2(b, c)
     x,u = eftSum2(a, s)
     y = u+t
@@ -22,7 +22,7 @@ function eftSum3as2{T<:Float64}(a::T,b::T,c::T)
     x,y
 end
 
-function eftSum3inOrderAs2{T<:Float64}(a::T,b::T,c::T)
+@inline function eftSum3inOrderAs2{T<:Float64}(a::T,b::T,c::T)
     s,t = eftSum2inOrder(b, c)
     x,u = eftSum2inOrder(a, s)
     y = u+t
@@ -37,7 +37,7 @@ function eftProd3{T<:Float64}(a::T, b::T, c::T)
     x,y,z
 end
 
-function eftProd3as2{T<:Float64}(a::T, b::T, c::T)
+@inline function eftProd3as2{T<:Float64}(a::T, b::T, c::T)
     p,e = eftProd2(a,b)
     x,p = eftProd2(p,c)
     y = e*c
