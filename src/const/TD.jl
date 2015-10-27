@@ -1,4 +1,4 @@
-const td_INF = TD(Inf,Inf,Inf);
+const td_Inf = TD(Inf,NaN,NaN);
 const td_NaN = TD(NaN,NaN,NaN);
 
 const td_zero = TD(0.0,0.0,0.0);
