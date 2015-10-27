@@ -347,11 +347,17 @@ end
 
 
 
+#=
 function sincos(radian::DD)
   if abs(radian) <= dd_pi_over_4
       s = sin_taylor(radian)
+      c = DD(sqrt(one(DD)-TD(s)*s))
    elseif abs(radian) < dd_twopi
       s = sinInCircle(radian)
+      c = DD(sqrt(one(DD)-TD(s)*s))
+      if (abs(radian) > dd_pi)
+          c = -c
+      end
    else
       r = mod2piAsTD(radian)
       ddr = DD(r.hi,r.md)
@@ -360,10 +366,19 @@ function sincos(radian::DD)
       c = cosInCircle(ddr)
       clo = cos(r.lo)
       s = s*clo + c*slo
+      c = c*clo - s*slo
+      if (abs(radian) > dd_pi)
+          c = -c
+      end
    end
-   c = DD(sqrt(one(DD)-TD(s)*s))
-   s,copysign(c,cos(radian))
+   s,c
 end
+=#
+
+function sincos(radian::DD)
+   sin(radian),cos(radian)
+end
+
 
 
 # good for radian in 0..2pi(quadrants 0,1, 1/2 of q3)
