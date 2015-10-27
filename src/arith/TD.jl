@@ -57,6 +57,20 @@ function renorm{T<:Float64}(c0::T, c1::T)
 end
 
 
+@inline function fastRenorm{T<:Float64}(c0::T, c1::T, c2::T)
+    c1, c2 = eftSum2inOrder(c1,c2)
+    c0, c1 = eftSum2inOrder(c0,c1)
+    c0, c1, c2
+end
+
+@inline function fastRenormAs3{T<:Float64}(c0::T, c1::T, c2::T, c3::T)
+    c2 += c3
+    c1, c2 = eftSum2inOrder(c1,c2)
+    c0, c1 = eftSum2inOrder(c0,c1)
+    c0, c1, c2
+end
+
+
 # addition
 
 # this is less rigorous addition method -- the
