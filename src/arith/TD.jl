@@ -212,8 +212,40 @@ end
   TD(p0,p1,s0)
 end
 
-@inline (*)(a::TD,b::DD) = (*)(a,TD(b))
-@inline (*)(a::DD,b::TD) = (*)(TD(a),b)
+
+@inline function (*)(a::TD,b::DD)
+  p0,q0 = eftProd2(a.hi, b.hi)
+  p1,q1 = eftProd2(a.hi, b.lo)
+  p2,q2 = eftProd2(a.md, b.hi)
+  p4,q4 = eftProd2(a.md, b.lo)
+  p5,q5 = eftProd2(a.lo, b.hi)
+
+  # Start Accumulation
+  p1,p2,q0 = eftSum3(p1, p2, q0)
+
+  # Six-Three Sum  of p2, q1, q2, p3, p4, p5
+  p2,q1,q2 = eftSum3(p2, q1, q2)
+  p3,p4 = eftSum2(p4, p5)
+  # compute (s0, s1, s2) = (p2, q1, q2) + (p3, p4, p5)
+  s0,t0 = eftSum2(p2, p3)
+  s1,t1 = eftSum2(q1, p4)
+  s2 = q2
+  s1,t0 = eftSum2(s1, t0)
+  s2 += (t0 + t1)
+
+  # O(eps^3) order terms
+  s1 += a.lo*b.lo + q0 + q4 + q5
+  #p0,p1,s0 = renormAs3(p0, p1, s0, s1+s2)
+  s1 += s2
+  s0,s1 = eftSum2inOrder(s0,s1)
+  p1,s0 = eftSum2inOrder(p1,s0)
+  p0,p1 = eftSum2inOrder(p0,p1)
+
+  TD(p0,p1,s0)
+end
+
+@inline (*)(a::DD,b::TD) = (*)(b,a)
+
 
 # reciprocation
 
