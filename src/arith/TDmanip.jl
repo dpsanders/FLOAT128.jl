@@ -24,6 +24,7 @@ flipsign(a::TD,b::Integer) = TD(flipsign(a.hi,b), flipsign(a.md,b.hi), flipsign(
         a.hi < zero(Float64) ? a : -a
     else
         a.hi < zero(Float64) ? -a : a
+    end
 end
 copysign(a::TD,b::Integer) = copysign(a,convert(Float64,b))
 copysign(a::TD,b::DD) = copysign(a,b.hi)
