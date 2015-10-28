@@ -3,13 +3,6 @@ typealias SignedFloat    Union{Float64,Float32,Float16}
 typealias SignedNumber   Union{SignedFloat, SignedInt}
 
 #=
-   The typealias *FloatingPoint* is used as a parameter for error free transformations.
-   If you want multiple Floating Point types available, use a Union here.
-   For most purposes, it should be either Float64 or, e.g. for CUDA Float32.
-=#
-typealias FloatingPoint Float64
-
-#=
 The internal structure is 128 bits given as a magnitude-ordered pair of Float64 values.\\
 The pair are *presumed* to be in cannonical form, where they do not overlap: hi⊕lo ≡ hi.\\
 This representation is known as "double-double" (see refs.md)
