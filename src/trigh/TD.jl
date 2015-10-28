@@ -1,10 +1,10 @@
 
 function sinh(x::TD)
-  0.5 * (exp(x) - exp(-x))
+  divby2(exp(x) - exp(-x))
 end
 
 function cosh(x::TD)
-  0.5 * (exp(x) + exp(-x))
+  divby2(exp(x) + exp(-x))
 end
 
 function tanh(x::TD)
