@@ -87,7 +87,18 @@ function exp_taylor(a::TD)
   ((((z6+z5)+z4)+z3)+z2)+z + one(DD)
 end
 
+# exp(0 fifths) .. exp(6 fifths)
+const td_exp_fifths = TD[
+   TD(1.0, 0.0, 0.0)                                                       
+   TD(1.2214027581601699, -2.0740986247316727e-17, -6.426608929993855e-34), 
+   TD(1.4918246976412703, -2.9678597513482695e-17, -1.3156795434672035e-33)
+   TD(1.8221188003905089, 8.896402286295436e-17, 5.8486273504934125e-33),   
+   TD(2.2255409284924674, 1.7500150972701294e-16, -1.0087607019081632e-32), 
+   TD(2.718281828459045, 1.4456468917292502e-16, -2.1277171080381768e-33),
+   TD(3.3201169227365477, -1.926181990575462e-16, -9.879307591112402e-33)
+];
 
+const td_n_exp_int = 256;
 const td_exp_int = TD[  
   TD(2.718281828459045, 1.4456468917292502e-16, -2.1277171080381768e-33),  
   TD(7.38905609893065, -1.7971139497839148e-16, 8.268430555139957e-33),  
@@ -347,3 +358,24 @@ const td_exp_int = TD[
   TD(1.5114276650041035e111, 1.4805989167614457e94, -3.8326245424402867e77)
  ];
 
+function exp(x::TD)
+    isneg, abs_x = signbit(x), abs(x)
+    if abs_x.hi <= 0.2
+        z = exp_taylor(abs_x)
+    elseif abs_x.hi <= 256.0
+        f = floor(abs_x.hi)
+        i = trunc(Int,f)
+        d = abs_x - f
+        expi = td_exp_int[i]
+        dfifths = d / 5.0
+        f = floor(dfifths)
+        i = trunc(Int,f)
+        expi = expi * td_exp_fifths[i+1]
+        d = d - TD(0.2,0.0,0.0)*f
+        z = expi * exp_taylor(d)
+    else
+        NaN
+    end
+    isneg ? recip(z) : z
+end    
+end    
