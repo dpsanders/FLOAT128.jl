@@ -18,6 +18,27 @@ const td_tanh_coeff = TD[
   TD(4.294911078273806e-7, 1.1643520863702653e-23, 2.25974956639863e-40),
 ];
 
+function tanh_taylor_series(radian::TD)
+  x = radian
+  x2 = x*x
+  x3 = x*x2
+  x4 = x2*x2
+  x5 = x2*x3
+  x6 = x3*x3
+  x7 = x3*x4
+  x8 = x4*x4
+  x9 = x4*x5
+  x17 = x8*x9
+  x25 = x17*x8
+
+  z = x + x*(td_tanh_coeff[2]*x2 + td_tanh_coeff[3]*x4 + td_tanh_coeff[4]*x6)
+  z2 = x9 * (td_tanh_coeff[5] + x2*td_tanh_coeff[6] + x4*td_tanh_coeff[7] + x6*td_tanh_coeff[8])
+  z3 = x17 * (td_tanh_coeff[9] + x2*td_tanh_coeff[10] + x4*td_tanh_coeff[11] + x6*td_tanh_coeff[12])
+  z4 = x25 * (td_tanh_coeff[13] + x2*td_tanh_coeff[14] + x4*td_tanh_coeff[15] + x6*td_tanh_coeff[16])
+
+  z + ((z4+z3)+z2)
+end
+
 function sinh(x::TD)
   epx = exp(x)
   emx = 1.0/epx
