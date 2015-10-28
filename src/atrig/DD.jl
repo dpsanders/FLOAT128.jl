@@ -72,3 +72,6 @@ function atan(x::DD)
     isneg ? -t : t
 end
 
+asec(x::DD) = acos(1.0/x)
+acsc(x::DD) = asin(1.0/x)
+acot(x::DD) = flipsign(dd_pi_over_2,x.hi) - atan(1.0/x)
