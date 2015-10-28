@@ -66,6 +66,23 @@ function eftFMS{T<:Float64}(a::T, b::T, c::T)
     x,y,z
 end
 
+# experimental (a/b)+c
+function eftFDA{T<:Float64}(a::T,b::T,c::T)
+    x = (a/b)
+    y = fma(x,b,-a)/b
+    z = -y
+    eftSum3as2(x,z,c)
+end
+
+# experimental (a/b)-c
+function eftFDS{T<:Float64}(a::T,b::T,c::T)
+    x = (a/b)
+    y = fma(x,b,-a)/b
+    z = -y
+    eftSum3as2(x,z,-c)
+end
+
+
 #=
 
 """
