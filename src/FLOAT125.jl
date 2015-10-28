@@ -34,8 +34,7 @@ include("eft/double.jl")
 include("eft/triple.jl")
 
 # working types
-include("types.jl")
-include("const/DD.jl")   
+include("const/DD.jl")
 include("const/TD.jl")
 
 # magnitude: comparison and subnumeric composition
