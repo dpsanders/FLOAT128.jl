@@ -22,15 +22,16 @@
 | tan  | -64Gpi..64Gpi   | 103 | 5.9e-32 | t |
 | csc, sec, cot | -64Gpi..64Gpi | 103 | 8.8e-32 | t |
 |      |             |     |       |
+| asin, acos  | -1..1     | 106 | 8e-33 | t |
+| atan  | -1..1   | ? | ? |
+| acsc, asec, acot  | ? | :  |  |
+|      |             |     |       |
 | cosh  | -1..1   | 105 | 1.7e-32 | t |
 |      |             |     |       |
 | sinh, tanh  | -1..1   | ? | ? | |
 | sinh, tanh  | -1024..1024   | ? | ? | |
-| csch, sech, coth  | | accordingly  |  |
+| csch, sech, coth  | | ?  |  |
 |      |            |     |       |
-| asin, acos  | -1..1     | 106 | 2e-32 |
-| atan  | -16..16   | 106 | 2e-32 |
-| acsc, asec, acot  | | accordingly  |  |
 |      |            |     |       |
 | asinh  | -1024..1024     | 106 | 2e-32 |
 | acosh  |  1..1024     | 106 | 2e-32 |
