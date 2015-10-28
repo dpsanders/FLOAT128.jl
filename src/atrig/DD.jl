@@ -87,7 +87,9 @@ function acscNear1(x::DD)
     d
 end
 
-function acscNear1inner(dz::DD)
+
+
+function acscNear1inner(z::DD)
     28745297418623385600+(-11977207257759744000+(7725298681255034880+(-5678479512384307200+(4471178803124633600+(-3678333901524172800+(3120230290312396800+(-2707335706710835200+(2390122732757760000+(-2139078913747776000+(1935592642417262400+(-1767382875804546000+1626037491584404899*dz)*dz)*dz)*dz)*dz)*dz)*dz)*dz)*dz)*dz)*dz)*dz
 end
 
@@ -108,7 +110,28 @@ function acsc(x::DD)
     end
     isneg ? -ac : ac
 end    
-       
+   
+
+function asecNear1(x::DD)
+    dz = abs(x) - 1.0
+    szm1 = x-1.0
+    szm1 = sqrt(szm1)
+    szm1sqrt2 = szm1*dd_sqrt2
+    szm1sq = szm1*szm1
+    szm1sqsqrt2 = szm1sq * dd_sqrt_2
+    nr = acscNear1inner(abs(x))
+    a = nr * szm1sqsqrt2
+    b = a / 359316217732792320.0
+    b = -b
+    c = b + szm1sqrt2
+    d = c * szm1
+    d
+end
+
+function asecNear1inner(z::DD)
+   594878016472480861+(-1849899354905107326+(4653433866822080565+(-8533149666531932680+(11353930217826804090+(-10982629984196080980+(7663407378786969810+(-3765875428328836680+(1238645526333846345+(-245117767505784030+22092285947556825*z)*z)*z)*z)*z)*z)*z)*z)*z)*z
+end
+
 function asec(x::DD)
     isneg, abs_x = signbit(x), abs(x)
     if abs_x.hi < 1.0
