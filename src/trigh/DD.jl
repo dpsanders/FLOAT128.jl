@@ -1,24 +1,23 @@
 
 @inline function sinhAsTD(a::DD)
   x=TD(a)
-  divby2(exp(a) - exp(-a))
+  sinh(x)
 end
 
 sinh(a::DD) = DD(sinhAsTD(a))
 
 @inline function coshAsTD(a::DD)
-  #x=TD(a)
-  ivby2(exp(a) + exp(-a))
+  x=TD(a)
+  cosh(x)
 end
 
 cosh(a::DD) = DD(coshAsTD(a))
 
-@inline function tanh(a::DD)
+@inline function tanhAsTD(a::DD)
   x=TD(a)
-  epx = exp(a)
-  emx = exp(-a)
-  (epx - emx) / (epx + emx)
+  tanh(x)
 end
+tanh(a::DD) = DD(tanhAsTD(a))
 
 tanh(a::DD) = sinh(a)/cosh(a) # DD(tanhAsTD(a))
 
