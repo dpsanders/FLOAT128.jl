@@ -26,9 +26,9 @@ import Base: convert, promote_rule,
 export Float128, clean
 
 # include
-include("types.jl")
 
-include("util/domainCheck.jl")
+include("config.jl")
+include("types.jl")
 
 # error-free transformations by number of args in & vals out
 include("eft/single.jl")
@@ -38,6 +38,9 @@ include("eft/triple.jl")
 # working types
 include("const/DD.jl")
 include("const/TD.jl")
+
+# internal
+include("util/domainCheck.jl")
 
 # magnitude: comparison and subnumeric composition
 include("mag/DD.jl")
