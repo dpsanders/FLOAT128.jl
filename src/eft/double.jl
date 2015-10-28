@@ -1,7 +1,4 @@
-"""
- (a,b) ↦ (x,y)\\
-x⊕y ≖ a⊕b and x⊕y≖x
-"""
+
 @inline function eftSum2{T<:Float64}(a::T, b::T)
   x = a + b
   t = x - a
@@ -9,21 +6,14 @@ x⊕y ≖ a⊕b and x⊕y≖x
   x,y
 end
 
-"""
- (a,b) ↦ (x,y)\\
-x⊕y ≖ a⊕b and x⊕y≖x\\
- *presumes* |a| ≥ |b|
-"""
+
 @inline function eftSum2inOrder{T<:Float64}(a::T, b::T)
   x = a + b
   y = b - (x - a)
   x,y
 end
 
-"""
- (a,b) ↦ (x,y)\\
-x⊕y ≖ a⊝b and x⊕y≖x
-"""
+
 @inline function eftDiff2{T<:Float64}(a::T, b::T)
   x = a - b
   t = x - a
@@ -31,11 +21,7 @@ x⊕y ≖ a⊝b and x⊕y≖x
   x,y
 end
 
-"""
- (a,b) ↦ (x,y)\\
-x⊕y ≖ a⊝b and x⊕y≖x\\
-*presumes* |a| ≥ |b|
-"""
+
 @inline function eftDiff2inOrder{T<:Float64}(a::T, b::T)
   x = a - b
   y = (a - x) - b
@@ -58,3 +44,26 @@ end
      x,-y
 end
 
+#=
+"""
+ (a,b) ↦ (x,y)\\
+x⊕y ≖ a⊕b and x⊕y≖x
+"""->eftSum2
+
+"""
+ (a,b) ↦ (x,y)\\
+x⊕y ≖ a⊕b and x⊕y≖x\\
+ *presumes* |a| ≥ |b|
+"""->eftSum2InOrder
+
+"""
+ (a,b) ↦ (x,y)\\
+x⊕y ≖ a⊝b and x⊕y≖x
+"""->eftDiff2
+
+"""
+ (a,b) ↦ (x,y)\\
+x⊕y ≖ a⊝b and x⊕y≖x\\
+*presumes* |a| ≥ |b|
+"""->eftDiff2inOrder
+=#
