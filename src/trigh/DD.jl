@@ -41,7 +41,7 @@ end
 
 
 function sinh(x::DD)
-  isneg, abs_a = signbit(a), abs(a)
+  isneg, abs_a = signbit(x), abs(x)
   epx = exp(abs_a)
   emx = 1.0/epx
   epx = epx - emx
@@ -58,7 +58,7 @@ function cosh(x::DD)
 end
 
 function tanh(x::DD)
-  isneg, abs_a = signbit(a), abs(a)
+  isneg, abs_a = signbit(x), abs(x)
   if abs_a.hi < 1.0e-15
       t = (exp(abs_a)-exp(-abs_a)) / (exp(abs_a)+exp(-abs_a))
   else    
