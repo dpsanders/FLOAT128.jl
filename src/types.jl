@@ -1,11 +1,12 @@
 typealias SignedInt Union{Int128,Int64,Int32,Int16}
 typealias MachineFloat Union{Float64,Float32,Float16}
 
-"""
+#=
 The internal structure is 128 bits given as a magnitude-ordered pair of Float64 values.\\
 The pair are *presumed* to be in cannonical form, where they do not overlap: hi⊕lo ≡ hi.\\
 This representation is known as "double-double" (see refs.md)
-"""
+=#
+
 immutable DD <: Real
     hi::Float64
     lo::Float64
@@ -71,12 +72,13 @@ for T in (:AbstractFloat, Integer)
   end
 end
 
-"""
+#=
 Some internal computations require higher precision to meet the targeted relative error.\\
 The internal structure is 192 bits given as a magnitude-ordered triple of Float64 values.\\
 The triple are *presumed* to be in cannonical form: hi⊕md ≡ hi,  md⊕lo ≡ md\\
 This representation is known as "triple-double" (see refs.md)
-"""
+=#
+
 immutable TD <: Real
     hi::Float64
     md::Float64
@@ -121,7 +123,7 @@ function clean(x::TD)
     elseif (abs(x.lo) <= eps(eps(x.md)))
         DD(x.hi,x.md,0.0)
     else
-            x
+        x
     end
 end
 
