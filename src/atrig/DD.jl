@@ -72,6 +72,8 @@ function atan(x::DD)
     isneg ? -t : t
 end
 
+# ok for |x| >= 1.005
+# !!FIXME for 1 <= |x| < 1.005
 function acsc(x::DD)
     isneg, abs_x = signbit(x), abs(x)
     if abs_a.hi < 1.0
