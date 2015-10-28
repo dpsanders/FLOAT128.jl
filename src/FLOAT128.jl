@@ -56,6 +56,7 @@ include("exp/DD.jl")
 # trig, arctrig
 include("trig/DD.jl")
 include("atrig/DD.jl")
+include("atrig/TD.jl")
 
 # io
 include("io/DD.jl")
