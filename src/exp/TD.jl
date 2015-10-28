@@ -65,6 +65,7 @@ const td_inv_fact = TD[
       TD(7.881032213270323e-90, -4.96687055877992e-106, 4.0839266183638546e-122)
   ];
 
+# |a| <= 0.19
 function exp_taylor(a::TD)
   x = a
   x2 = x*x
