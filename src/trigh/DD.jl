@@ -37,6 +37,9 @@ function tanh_taylor_series(radian::DD)
   (z + (z3+z2))
 end
 
+#=
+   tanh z = z / (1 + z^2/(3 + z^2/5 + ...))
+=#   
 
 function sinh(x::DD)
   isneg, abs_a = signbit(x), abs(x)
