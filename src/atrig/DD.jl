@@ -131,7 +131,7 @@ function asec(x::DD)
     else
        ac = asecNear1(abs_x)
     end
-    isneg ? -ac : ac
+    isneg ? DD(td_pi-ac) : ac
 end    
 
  
