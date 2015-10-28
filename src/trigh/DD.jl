@@ -18,6 +18,27 @@ const dd_tanh_coeff = DD[
   TD(4.294911078273806e-7, 1.1643520863702653e-23)
 ];
 
+function tanh_taylor_series(radian::DD)
+  x = radian
+  x2 = x*x
+  x3 = x*x2
+  x4 = x2*x2
+  x5 = x2*x3
+  x6 = x3*x3
+  x7 = x3*x4
+  x8 = x4*x4
+  x9 = x4*x5
+  x17 = x8*x9
+  x25 = x17*x8
+
+  z = TD(x) + x*(dd_tanh_coeff[2]*x2 + dd_tanh_coeff[3]*x4 + dd_tanh_coeff[4]*x6)
+  z2 = x9 * (dd_tanh_coeff[5] + x2*dd_tanh_coeff[6] + x4*dd_tanh_coeff[7] + x6*dd_tanh_coeff[8])
+  z3 = x17 * (dd_tanh_coeff[9] + x2*dd_tanh_coeff[10] + x4*dd_tanh_coeff[11] + x6*dd_tanh_coeff[12])
+  z4 = x25 * (dd_tanh_coeff[13] + x2*dd_tanh_coeff[14] + x4*dd_tanh_coeff[15] + x6*dd_tanh_coeff[16])
+
+  DD(z + ((z4+z3)+z2))
+end
+
 
 @inline function sinhAsTD(a::DD)
   isneg, abs_a = signbit(a), abs(a)
