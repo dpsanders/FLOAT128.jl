@@ -92,10 +92,7 @@ function acscNear1inner(dz::DD)
 end
 
 
-
-
-# ok for |x| >= 1.005
-# !!FIXME for 1 <= |x| < 1.005
+# recheck for 1.003125 <= |x| < 1.005
 function acsc(x::DD)
     isneg, abs_x = signbit(x), abs(x)
     if abs_x.hi < 1.0
@@ -112,5 +109,19 @@ function acsc(x::DD)
     isneg ? -ac : ac
 end    
        
-asec(x::DD) = acos(1.0/x)
+function asec(x::DD)
+    isneg, abs_x = signbit(x), abs(x)
+    if abs_x.hi < 1.0
+      throw(ErrorException("acsc: Argument out of domain."))
+      return dd_NaN
+    end
+    if abs_x.hi > 1.005   
+       ac = acos(1.0/abs_x)
+    else
+       ac = DD(td_pi_over_2 - acscNear1(abs_x))
+    end
+    isneg ? -ac : ac
+end    
+
+ 
 acot(x::DD) = flipsign(dd_pi_over_2,x.hi) - atan(1.0/x)
