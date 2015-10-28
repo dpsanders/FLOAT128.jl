@@ -99,7 +99,8 @@ const td_exp_fifths = TD[
 ];
 
 const td_n_exp_int = 256;
-const td_exp_int = TD[  
+const td_exp_int = TD[
+  TD(1.0, 0.0, 0.0),
   TD(2.718281828459045, 1.4456468917292502e-16, -2.1277171080381768e-33),  
   TD(7.38905609893065, -1.7971139497839148e-16, 8.268430555139957e-33),  
   TD(20.085536923187668, -1.8275625525512858e-16, 1.1213291937709194e-32),  
@@ -366,7 +367,7 @@ function exp(x::TD)
         f = floor(abs_x.hi)
         i = trunc(Int,f)
         d = abs_x - f
-        expi = td_exp_int[i]
+        expi = td_exp_int[i+1]
         dfifths = d / 5.0
         f = floor(dfifths.hi)
         i = trunc(Int,f)
