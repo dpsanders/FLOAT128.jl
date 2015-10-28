@@ -112,24 +112,12 @@ function acsc(x::DD)
 end    
    
 
-function asecNear1(x::DD)
-    dz = abs(x) - 1.0
-    szm1 = x-1.0
-    szm1 = sqrt(szm1)
-    szm1sqrt2 = szm1*dd_sqrt2
-    szm1sq = szm1*szm1
-    szm1sqsqrt2 = szm1sq * dd_sqrt_2
-    nr = asecNear1inner(abs(x))
-    a = nr * szm1sqsqrt2
-    b = a / 359316217732792320.0
-    b = -b
-    c = b + szm1sqrt2
-    d = c * szm1
-    d
-end
-
-function asecNear1inner(z::DD)
-   594878016472480861+(-1849899354905107326+(4653433866822080565+(-8533149666531932680+(11353930217826804090+(-10982629984196080980+(7663407378786969810+(-3765875428328836680+(1238645526333846345+(-245117767505784030+22092285947556825*z)*z)*z)*z)*z)*z)*z)*z)*z)*z
+function asecNear1(z::DD)
+    dz = z - one(DD)
+    v = 1.0+(-DD(5)/DD(12)+(DD(43)/DD(160)+(-DD(177)/DD(896)+(DD(2867)/DD(18432)+(-DD(11531)/DD(90112)+(DD(92479)/DD(851968)+(-DD(74069)/DD(786432)+(DD(11857475)/DD(142606336)+(-DD(47442055)/DD(637534208)+(DD(126527543)/DD(1879048192)+(-DD(1518418695)/DD(24696061952)+(DD(24295375159)/DD(429496729600)-DD(97182800711)*dz*(DD(1.0)/DD(1855425871872.0)))*dz)*dz)*dz)*dz)*dz)*dz)*dz)*dz)*dz)*dz)*dz)*dz
+    w = v * dd_sqrt2
+    w = w *sqrt(dz)
+    w
 end
 
 function asec(x::DD)
