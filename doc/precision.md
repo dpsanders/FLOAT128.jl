@@ -23,7 +23,9 @@
 | csc, sec, cot | -64Gpi..64Gpi | 103 | 8.8e-32 | t |
 |      |             |     |       |
 | cosh  | -1..1   | 105 | 1.7e-32 | t |
-| sinh, cosh, tanh  | -16..16   | 103 | 6e-32 |
+|      |             |     |       |
+| sinh, tanh  | -1..1   | ? | ? | |
+| sinh, tanh  | -1024..1024   | ? | ? | |
 | csch, sech, coth  | | accordingly  |  |
 |      |            |     |       |
 | asin, acos  | -1..1     | 106 | 2e-32 |
