@@ -1,3 +1,41 @@
+@inline function isless(a::TD, b::TD)
+    (a.hi < b.hi) || (a.hi==b.hi && a.md<b.md) || (a.hi==b.hi && a.md==b.md && a.lo<b.lo)
+end
+@inline function isless(a::TD, b::Float64)
+    (a.hi < b) || (a.hi==b && a.md<zero(Float64)
+end
+@inline function isless(a::Float64, b::TD)
+    (a < b.hi) || (a==b.hi && b.lo>zero(Float64))
+end
+@inline function isequal(a::TD, b::TD)
+    (a.hi == b.hi) && (a.md == b.md) && (a.lo == b.lo)
+end
+@inline function isequal(a::TD, b::Float64)
+    (a.hi == b) && (a.md == zero(Float64))
+end
+@inline function isequal(a::Float64, b::TD)
+    (a == b.hi) && (b.md == zero(Float64))
+end
+
+@inline (==)(a::TD,b::TD) = (a.hi == b.hi) && (a.md == b.md) && (a.lo == b.lo)
+@inline (< )(a::TD,b::TD) = (a.hi < b.hi) || (a.hi==b.hi && a.md<b.md) || (a.hi==b.hi && a.md==b.md && a.lo<b.lo)
+@inline (<=)(a::TD,b::TD) = (a.hi < b.hi) || (a.hi==b.hi && a.md<b.md) || (a.hi==b.hi && a.md==b.md && a.lo<=b.lo)
+@inline (> )(a::TD,b::TD) = (a.hi > b.hi) || (a.hi==b.hi && a.md>b.md) || (a.hi==b.hi && a.md==b.md && a.lo>b.lo)
+@inline (>=)(a::TD,b::TD) = (a.hi > b.hi) || (a.hi==b.hi && a.md>b.md) || (a.hi==b.hi && a.md==b.md && a.lo>=b.lo)
+
+@inline (==)(a::TD,b::DD) = (==)(a,TD(b))
+@inline (< )(a::TD,b::DD) = (< )(a,TD(b))
+@inline (<=)(a::TD,b::DD) = (==)(a,TD(b))
+@inline (> )(a::TD,b::DD) = (> )(a,TD(b))
+@inline (>=)(a::TD,b::DD) = (>=)(a,TD(b))
+
+@inline (==)(a::DD,b::TD) = (==)(TD(a),b)
+@inline (< )(a::DD,b::TD) = (< )(TD(a),b)
+@inline (<=)(a::DD,b::TD) = (==)(TD(a),b)
+@inline (> )(a::DD,b::TD) = (> )(TD(a),b)
+@inline (>=)(a::DD,b::TD) = (>=)(TD(a),b)
+
+
 function (floor)(a::TD)
     hi = floor(a.hi)
     md = lo = 0.0
