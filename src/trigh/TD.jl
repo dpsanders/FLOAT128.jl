@@ -1,9 +1,9 @@
 
-function sinh(x::DD)
+function sinh(x::TD)
   0.5 * (exp(x) - exp(-x))
 end
 
-function cosh(x::DD)
+function cosh(x::TD)
   0.5 * (exp(x) + exp(-x))
 end
 
