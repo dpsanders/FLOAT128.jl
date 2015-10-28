@@ -1,4 +1,4 @@
-function (floor){F<:MachineFloat}(a::TD{F})
+function (floor)(a::TD)
     hi = floor(a.hi)
     md = lo = 0.0
     if (hi == a.hi)
@@ -13,7 +13,7 @@ function (floor){F<:MachineFloat}(a::TD{F})
     TD(hi,md,lo)
 end
 
-function (ceil){F<:MachineFloat}(a::TD{F})
+function (ceil)(a::TD)
     hi = ceil(a.hi)
     md = lo = 0.0
     if (hi == a.hi)
@@ -27,15 +27,15 @@ function (ceil){F<:MachineFloat}(a::TD{F})
     end
 end
 
-@inline function (trunc){F<:MachineFloat}(a::TD{F})
+@inline function (trunc)(a::TD)
     a.hi >= zero(F) ? floor(a) : ceil(a)
 end
 
-function ldexp{F<:MachineFloat}(a::TD{F},xp::Int)
+function ldexp(a::TD,xp::Int)
     TD(ldexp(a.hi,xp),ldexp(a.md,xp),ldexp(a.lo,xp))
 end
 
-function frexp{F<:MachineFloat}(a::TD{F})
+function frexp(a::TD)
     frhi, xphi = frexp(a.hi)
     frmd, xpmd = frexp(a.md)
     frlo, xplo = frexp(a.lo)
