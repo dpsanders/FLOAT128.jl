@@ -2,18 +2,17 @@
 ### *(work in progress -- incomplete)*
 100+ valid significand bits for elementary functions with conventionally small values.
 
-  relative errors (*max found with 24,000 random double-double values each function*)
+  relative errors (*max found with 20,000 random double-double values each function*)
 
 
 | func | over | good bits | rel err | 20,0000 |
 |------|------|-----------|---------|---------|
 | sqrt | 1e-42..4e15 | 107 | 3e-33 |  |
 |      |             |     |       |  |
-| exp  | -50..50   | 104 | 5e-32 |  |
-| log  |    1..512   | 107 | 3e-33 | |
+| exp  | -15..15   | 104 | 4.9e-32 |t  |
+| exp  | -300..300   | 103 | 5.2e-32 |t |
 |      |             |     |       | |
-| exp  | -300..300   | 103 | 6e-32 | |
-| log  |    1..512   | 107 | 3e-33 | |
+| log  |    1..64G   | 105 | 1.9e-33 |t  |
 |      |             |     |       | |
 | sin, cos  | -2pi..2pi   | 106 | 1.2e-32 | t |
 | tan  | -2pi..2pi   | 104 | 4.8e-32 | t |
