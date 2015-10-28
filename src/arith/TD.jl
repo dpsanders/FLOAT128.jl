@@ -328,8 +328,8 @@ function sqrt(a::TD)
        else
            throw(ArgumentError("sqrt expects a nonnegative base"))
        end
-    elseif (a.hi < 1.0e-18) | (a.hi > 1.0e18)
-        throw(ArgumentError("sqrt arg ($a) outside domain"))
+    #elseif (a.hi < 1.0e-18) | (a.hi > 1.0e18)
+    #    throw(ArgumentError("sqrt arg ($a) outside domain"))
     end
 
     if (a.hi < 1.0e-7)  # -log2(1.0e-7) < (1/2) Float64 significand bits
