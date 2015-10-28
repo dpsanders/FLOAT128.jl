@@ -113,8 +113,8 @@ function (recip)(b::DD)
   q1,q2 = eftSum3as2(q1,q2,q3)
   DD(q1,q2)
 end
-=#
 
+#=
 function (recip)(b::TD)
    hi,lo = eftRecip(b.hi)
 
@@ -125,7 +125,7 @@ function (recip)(b::TD)
 
    r = r + (one(TD) - r*b) * r
 end
-
+=#
 
 # division
 
