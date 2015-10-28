@@ -1,6 +1,6 @@
 VERSION >= v"0.4.0" && __precompile__()
 
-module FLOAT125
+module FLOAT128
 
 # using
 
