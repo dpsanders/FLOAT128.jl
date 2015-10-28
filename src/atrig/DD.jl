@@ -72,6 +72,28 @@ function atan(x::DD)
     isneg ? -t : t
 end
 
+# for 1 <= |x| < 1+1/320 = 1.003125
+function acscNear1(x::DD)
+    dz = abs(x) - 1.0 
+    sdz = sqrt(dz)
+    s2  = FLOAT128.dd_sqrt2
+    p2  = FLOAT128.dd_pi_over_2
+    a = acscNear1inner(dz)
+    b = a * sdz
+    b = b * s2
+    c = b / 28745297418623385600.0
+    c = -c
+    d = c + p2
+    d
+end
+
+function acscNear1inner(dz::DD)
+    28745297418623385600+(-11977207257759744000+(7725298681255034880+(-5678479512384307200+(4471178803124633600+(-3678333901524172800+(3120230290312396800+(-2707335706710835200+(2390122732757760000+(-2139078913747776000+(1935592642417262400+(-1767382875804546000+1626037491584404899*dz)*dz)*dz)*dz)*dz)*dz)*dz)*dz)*dz)*dz)*dz)*dz
+end
+
+
+
+
 # ok for |x| >= 1.005
 # !!FIXME for 1 <= |x| < 1.005
 function acsc(x::DD)
@@ -80,7 +102,13 @@ function acsc(x::DD)
       throw(ErrorException("acsc: Argument out of domain."))
       return dd_NaN
     end
-    ac = asin(1.0/(-abs_x))
+    if abs_x.hi <= 1.003125 # 1+1/320
+       ac = acscNear1(abs_x)
+    elseif abs_x.hi > 1.005   
+       ac = asin(1.0/(abs_x))
+    else
+       ac =
+    end
     isneg ? ac : -ac
 end    
        
