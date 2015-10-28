@@ -24,13 +24,13 @@
 |      |             |     |       |
 | asin, acos  | -1..1     | 106 | 8e-33 | t |
 | atan  | -1..1   | ? | ? |
-| acsc, asec, acot  | ? | :  |  |
+| acsc, asec, acot  | ? | ?  |  |
 |      |             |     |       |
 | cosh  | -1..1   | 105 | 1.7e-32 | t |
 |      |             |     |       |
 | sinh, tanh  | -1..1   | ? | ? | |
 | sinh, tanh  | -1024..1024   | ? | ? | |
-| csch, sech, coth  | | ?  |  |
+| csch, sech, coth  | | ?  | ? |
 |      |            |     |       |
 |      |            |     |       |
 | asinh  | -1..1     | ? | ? |
