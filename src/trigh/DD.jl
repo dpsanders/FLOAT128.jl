@@ -58,10 +58,15 @@ cosh(a::DD) = DD(coshAsTD(a))
 
 @inline function tanhAsTD(a::DD)
   isneg, abs_a = signbit(a), abs(a)
-  x = TD(abs_a)
-  t = tanh(x)
+  if abs_a.hi < 1.0e-10
+      t = TD((exp(abs_a)-exp(-abs_a))/(exp(abs_a)+exp(-abs_a)))
+  else 
+      x = TD(abs_a)
+      t = tanh(x)
+  end    
   isneg ? -t : t
 end
+
 tanh(a::DD) = DD(tanhAsTD(a))
 
 #tanh(a::DD) = sinh(a)/cosh(a) # DD(tanhAsTD(a))
