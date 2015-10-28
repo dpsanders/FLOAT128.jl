@@ -5,7 +5,7 @@
   relative errors (*max found with 20,000 random double-double values each function*)
 
 
-| func | over | good bits | rel err | checked |
+| func | over | sig bits | rel err | checked |
 |------|------|-----------|---------|---------|
 | sqrt | 0..64G | 106 | 1.2e-32 | t |
 |      |             |     |       |  |
