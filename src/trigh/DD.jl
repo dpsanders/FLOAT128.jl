@@ -40,42 +40,40 @@ function tanh_taylor_series(radian::DD)
 end
 
 
-@inline function sinhAsTD(a::DD)
+function sinh(x::DD)
   isneg, abs_a = signbit(a), abs(a)
-  x = TD(abs_a)
-  s = sinh(x)
+  epx = exp(abs_a)
+  emx = 1.0/epx
+  epx = epx - emx
+  s = divby2(epx)
   isneg ? -s : s
 end
 
-sinh(a::DD) = DD(sinhAsTD(a))
-
-@inline function coshAsTD(a::DD)
-  x=TD(abs(a))
-  cosh(x)
+function cosh(x::DD)
+  abs_a = abs(x)
+  epx = exp(abs_a)
+  emx = 1.0/epx
+  epx = epx + emx
+  divby2(epx)
 end
 
-cosh(a::DD) = DD(coshAsTD(a))
-
-@inline function tanhAsTD(a::DD)
+function tanh(x::DD)
   isneg, abs_a = signbit(a), abs(a)
   if abs_a.hi < 1.0e-15
-      t = TD((exp(abs_a)-exp(-abs_a))/(exp(abs_a)+exp(-abs_a)))
-  else 
-      x = TD(abs_a)
-      t = tanh(x)
+      t = (exp(abs_a)-exp(-abs_a)) / (exp(abs_a)+exp(-abs_a))
+  else    
+      epx = exp(abs_a)
+      emx = exp(-abs_a) # do not use 1.0/exp(x) here
+      n = (epx - emx)
+      d = (epx + emx)
+      t = n/d
   end    
   isneg ? -t : t
 end
 
-tanh(a::DD) = DD(tanhAsTD(a))
 
 #tanh(a::DD) = sinh(a)/cosh(a) # DD(tanhAsTD(a))
 
-@inline cschAsTD(a::DD) = recip(sinhAsTD(a))
-csch(a::DD) = DD(cschAsTD(a))
-
-@inline sechAsTD(a::DD) = recip(coshAsTD(a))
-sech(a::DD) = DD(sechAsTD(a))
-
-@inline cothAsTD(a::DD) = recip(cothAsTD(a))
-coth(a::DD) = DD(cothAsTD(a))
+csch(a::DD) = recip(sinh(a))
+sech(a::DD) = recip(cosh(a))
+coth(a::DD) = recip(tanh(a))
