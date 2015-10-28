@@ -1,21 +1,25 @@
 
 @inline function sinhAsTD(a::DD)
-  x=TD(a)
-  sinh(x)
+  isneg, abs_a = signbit(a), abs(a)
+  x = TD(abs_a)
+  s = sinh(x)
+  isneg ? -s : s
 end
 
 sinh(a::DD) = DD(sinhAsTD(a))
 
 @inline function coshAsTD(a::DD)
-  x=TD(a)
+  x=TD(abs(a))
   cosh(x)
 end
 
 cosh(a::DD) = DD(coshAsTD(a))
 
 @inline function tanhAsTD(a::DD)
-  x=TD(a)
-  tanh(x)
+  isneg, abs_a = signbit(a), abs(a)
+  x = TD(abs_a)
+  t = tanh(x)
+  isneg ? -t : t
 end
 tanh(a::DD) = DD(tanhAsTD(a))
 
