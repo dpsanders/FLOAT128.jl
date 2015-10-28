@@ -1,4 +1,4 @@
-const DD_typename = "Float127"
+const DD_typename = "Float128"
 
 function show(io::IO, x::DD)
     hi=string(x.hi)
