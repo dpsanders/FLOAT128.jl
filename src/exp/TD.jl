@@ -378,4 +378,3 @@ function exp(x::TD)
     end
     isneg ? recip(z) : z
 end    
-end    
