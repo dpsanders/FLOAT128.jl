@@ -368,7 +368,7 @@ function exp(x::TD)
         d = abs_x - f
         expi = td_exp_int[i]
         dfifths = d / 5.0
-        f = floor(dfifths)
+        f = floor(dfifths.hi)
         i = trunc(Int,f)
         expi = expi * td_exp_fifths[i+1]
         d = d - TD(0.2,0.0,0.0)*f
