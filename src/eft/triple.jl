@@ -1,4 +1,4 @@
-function eftSum3{T<:Float64}(a::T,b::T,c::T)
+function eftSum3{T<:FloatingPoint}(a::T,b::T,c::T)
     s,t = eftSum2(b, c)
     x,u = eftSum2(a, s)
     y,z = eftSum2(u, t)
@@ -6,7 +6,7 @@ function eftSum3{T<:Float64}(a::T,b::T,c::T)
     x,y,z
 end
 
-function eftSum3inOrder{T<:Float64}(a::T,b::T,c::T)
+function eftSum3inOrder{T<:FloatingPoint}(a::T,b::T,c::T)
     s,t = eftSum2inOrder(b, c)
     x,u = eftSum2inOrder(a, s)
     y,z = eftSum2inOrder(u, t)
@@ -14,7 +14,7 @@ function eftSum3inOrder{T<:Float64}(a::T,b::T,c::T)
     x,y,z
 end
 
-@inline function eftSum3as2{T<:Float64}(a::T,b::T,c::T)
+@inline function eftSum3as2{T<:FloatingPoint}(a::T,b::T,c::T)
     s,t = eftSum2(b, c)
     x,u = eftSum2(a, s)
     y = u+t
@@ -22,7 +22,7 @@ end
     x,y
 end
 
-@inline function eftSum3inOrderAs2{T<:Float64}(a::T,b::T,c::T)
+@inline function eftSum3inOrderAs2{T<:FloatingPoint}(a::T,b::T,c::T)
     s,t = eftSum2inOrder(b, c)
     x,u = eftSum2inOrder(a, s)
     y = u+t
@@ -30,14 +30,14 @@ end
     x,y
 end
 
-function eftProd3{T<:Float64}(a::T, b::T, c::T)
+function eftProd3{T<:FloatingPoint}(a::T, b::T, c::T)
     p,e = eftProd2(a,b)
     x,p = eftProd2(p,c)
     y,z = eftProd2(e,c)
     x,y,z
 end
 
-@inline function eftProd3as2{T<:Float64}(a::T, b::T, c::T)
+@inline function eftProd3as2{T<:FloatingPoint}(a::T, b::T, c::T)
     p,e = eftProd2(a,b)
     x,p = eftProd2(p,c)
     y = e*c
@@ -46,7 +46,7 @@ end
 
 
 
-function eftFMA{T<:Float64}(a::T, b::T, c::T)
+function eftFMA{T<:FloatingPoint}(a::T, b::T, c::T)
     x = fma(a,b,c)
     u1,u2 = eftProd2(a,b)
     a1,a2 = eftSum2(u2,c)
@@ -56,7 +56,7 @@ function eftFMA{T<:Float64}(a::T, b::T, c::T)
     x,y,z
 end
 
-function eftFMS{T<:Float64}(a::T, b::T, c::T)
+function eftFMS{T<:FloatingPoint}(a::T, b::T, c::T)
     x = fma(a,b,c)
     u1,u2 = eftProd2(a,b)
     a1,a2 = eftDiff2(u2,c)
@@ -67,7 +67,7 @@ function eftFMS{T<:Float64}(a::T, b::T, c::T)
 end
 
 # experimental (a/b)+c
-function eftFDA{T<:Float64}(a::T,b::T,c::T)
+function eftFDA{T<:FloatingPoint}(a::T,b::T,c::T)
     x = (a/b)
     y = fma(x,b,-a)/b
     z = -y
@@ -75,7 +75,7 @@ function eftFDA{T<:Float64}(a::T,b::T,c::T)
 end
 
 # experimental (a/b)-c
-function eftFDS{T<:Float64}(a::T,b::T,c::T)
+function eftFDS{T<:FloatingPoint}(a::T,b::T,c::T)
     x = (a/b)
     y = fma(x,b,-a)/b
     z = -y
