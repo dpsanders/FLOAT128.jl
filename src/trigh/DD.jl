@@ -64,7 +64,7 @@ cosh(a::DD) = DD(coshAsTD(a))
 end
 tanh(a::DD) = DD(tanhAsTD(a))
 
-tanh(a::DD) = sinh(a)/cosh(a) # DD(tanhAsTD(a))
+#tanh(a::DD) = sinh(a)/cosh(a) # DD(tanhAsTD(a))
 
 @inline cschAsTD(a::DD) = recip(sinhAsTD(a))
 csch(a::DD) = DD(cschAsTD(a))
