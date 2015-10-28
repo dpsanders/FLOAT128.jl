@@ -19,9 +19,9 @@
 | tan  | -2pi..2pi   | 104 | 4.8e-32 | t |
 | csc, sec, cot | -2pi..2pi | 104 | 4.8e-32 | t |
 |      |             |     |       | |
-| sin, cos  | -4Kpi..4Kpi   | 105 | 2.25-32 | t |
-| tan  | -4Kpi..4Kpi   | 103 | 5.9e-32 | t |
-| csc, sec, cot | -4Kpi..4Kpi | 103 | 8.8e-32 | t |
+| sin, cos  | -64Gpi..64Gpi   | 105 | 2.25-32 | t |
+| tan  | -64Gpi..64Gpi   | 103 | 5.9e-32 | t |
+| csc, sec, cot | -64Gpi..64Gpi | 103 | 8.8e-32 | t |
 |      |             |     |       |
 | sinh, cosh, tanh  | -16..16   | 103 | 6e-32 |
 | csch, sech, coth  | | accordingly  |  |
@@ -35,3 +35,4 @@
 | atanh  | -1..1   | 106 | 2e-32 |
 | acsch, asech, acoth  | | accordingly  |  |
 
+** 64G = 4096^3 **
