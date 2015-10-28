@@ -60,7 +60,9 @@ end
 
 function tanh(x::DD)
   isneg, abs_a = signbit(x), abs(x)
-  if abs_a.hi > 0.05
+  if abs_a.hi < 0.0325
+      t = tanh_taylor_series(abs_a)
+  elseif abs_a.hi > 0.05
       ea = exp(abs_a)
       inv_ea = exp(-abs_a) # do not use 1/ea here
       t = (ea - inv_ea) / (ea + inv_ea)
