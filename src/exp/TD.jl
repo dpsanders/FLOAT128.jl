@@ -65,7 +65,7 @@ const td_inv_fact = TD[
       TD(7.881032213270323e-90, -4.96687055877992e-106, 4.0839266183638546e-122)
   ];
 
-# |a| <= 0.19
+# |a| <= 0.2
 function exp_taylor(a::TD)
   x = a
   x2 = x*x
@@ -82,7 +82,7 @@ function exp_taylor(a::TD)
   z3 = x10 * (td_inv_fact[10] + x*td_inv_fact[11] + x2*td_inv_fact[12] + x3*td_inv_fact[13] + x4*td_inv_fact[14])
   z4 = x15 * (td_inv_fact[15] + x*td_inv_fact[16] + x2*td_inv_fact[17] + x3*td_inv_fact[18] + x4*td_inv_fact[19])
   z5 = x20 * (td_inv_fact[20] + x*td_inv_fact[21] + x2*td_inv_fact[22] + x3*td_inv_fact[23] + x4*td_inv_fact[24])
-  z6 = x25 * (td_inv_fact[25] + x*td_inv_fact[26] + x2*td_inv_fact[27])
+  z6 = x25 * (td_inv_fact[25] + x*td_inv_fact[26] + x2*td_inv_fact[27] + x3*td_inv_fact[28])
 
   ((((z6+z5)+z4)+z3)+z2)+z + one(DD)
 end
