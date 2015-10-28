@@ -120,12 +120,13 @@ end
 function atan(x::DD)
     isneg, abs_x = signbit(x), abs(x)
     if (abs_x.hi <= 4.19745e-11)
-        return x
+        t = abs_x
     elseif abs_x.hi <= 0.003
-        return atan_series(x)
-    end
-    a = atan2(abs_x, one(DD))
-    isneg ? -a : a
+        t = atan_series(abs_x)
+    else
+        t = atan2(abs_x, one(DD))
+    end    
+    isneg ? -t : t
 end
 
 function atanh(x::DD)
