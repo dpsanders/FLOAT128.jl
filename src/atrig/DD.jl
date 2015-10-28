@@ -102,10 +102,10 @@ function acsc(x::DD)
       throw(ErrorException("acsc: Argument out of domain."))
       return dd_NaN
     end
-    if abs_x.hi <= 1.003125 # 1+1/320
-       ac = acscNear1(abs_x)
-    elseif abs_x.hi > 1.005   
-       ac = asin(1.0/(abs_x))
+    # if abs_x.hi <= 1.003125 # 1+1/320
+    #   ac = acscNear1(abs_x)
+    if abs_x.hi > 1.005   
+       ac = asin(1.0/abs_x)
     else
        ac = acscNear1(abs_x)
     end
