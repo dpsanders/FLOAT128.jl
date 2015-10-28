@@ -2,7 +2,7 @@
     (a.hi < b.hi) || (a.hi==b.hi && a.md<b.md) || (a.hi==b.hi && a.md==b.md && a.lo<b.lo)
 end
 @inline function isless(a::TD, b::Float64)
-    (a.hi < b) || (a.hi==b && a.md<zero(Float64)
+    (a.hi < b) || (a.hi==b && a.md<zero(Float64))
 end
 @inline function isless(a::Float64, b::TD)
     (a < b.hi) || (a==b.hi && b.lo>zero(Float64))
