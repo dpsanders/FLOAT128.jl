@@ -52,6 +52,7 @@ include("pow/DD.jl")
 
 # log, exp
 include("exp/DD.jl")
+include("exp/TD.jl")
 
 # trig, arctrig
 include("trig/DD.jl")
