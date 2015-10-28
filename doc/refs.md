@@ -31,6 +31,9 @@ Handbook of Floating-Point Arithmetic
    © Birkh¨auser Boston, a part of Springer Science+Business Media, LLC 2010
    ISBN 978-0-8176-4704-9  e-ISBN 978-0-8176-4705-6  DOI 10.1007/978-0-8176-4705-6
 
+An Atlas of Functions (2nd ed)
+by Keith Oldham, Jan Myland, Jerome Spanier
+
 "Accurate Floating-Point Summation Part I: Faithful Rounding"
 by Siegfried M. Rump, Takeshi Ogita, Shin'ichi Oishi
 
