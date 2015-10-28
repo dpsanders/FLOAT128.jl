@@ -1,6 +1,8 @@
-# FLOAT125.jl  
+# FLOAT128.jl  
 ### *(work in progress -- incomplete)*
 100+ valid significand bits for elementary functions with conventionally small values.
+
+exports type Float128
 
 ### Why?
 
