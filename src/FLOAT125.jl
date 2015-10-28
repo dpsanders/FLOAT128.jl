@@ -49,8 +49,8 @@ include("arith/DDmanip.jl")
 include("arith/TDmanip.jl")
 
 # integer powers, reciprocal roots
-include("pow/DD.jl")
-include("pow/TD.jl")
+# include("pow/DD.jl")
+# include("pow/TD.jl")
 
 # log, exp
 include("exp/DD.jl")
