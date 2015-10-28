@@ -114,19 +114,6 @@ function (recip)(b::DD)
   DD(q1,q2)
 end
 
-#=
-function (recip)(b::TD)
-   hi,lo = eftRecip(b.hi)
-
-   r = TD(hi,-lo,zero(Float64))
-   r = r + (one(TD) - r*b) * r
-   r = r + (one(TD) - r*b) * r
-   r = r + (one(TD) - r*b) * r
-
-   r = r + (one(TD) - r*b) * r
-end
-=#
-
 # division
 
 function (/){T<:DD}(a::T,b::T)
