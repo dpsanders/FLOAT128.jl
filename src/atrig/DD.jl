@@ -129,7 +129,7 @@ function asec(x::DD)
     if abs_x.hi > 1.005   
        ac = acos(1.0/abs_x)
     else
-       ac = DD(td_pi_over_2 - acscNear1(abs_x))
+       ac = asecNear1(abs_x)
     end
     isneg ? -ac : ac
 end    
