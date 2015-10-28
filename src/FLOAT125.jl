@@ -23,7 +23,7 @@ import Base: convert, promote_rule,
 
 # export
 
-export Float125
+export Float128
 
 # include
 include("types.jl")
