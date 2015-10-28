@@ -58,7 +58,7 @@ cosh(a::DD) = DD(coshAsTD(a))
 
 @inline function tanhAsTD(a::DD)
   isneg, abs_a = signbit(a), abs(a)
-  if abs_a.hi < 1.0e-10
+  if abs_a.hi < 1.0e-15
       t = TD((exp(abs_a)-exp(-abs_a))/(exp(abs_a)+exp(-abs_a)))
   else 
       x = TD(abs_a)
