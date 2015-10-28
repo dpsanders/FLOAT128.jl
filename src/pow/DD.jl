@@ -113,3 +113,5 @@ function nroot{T<:DD,N<:Integer}(a::T,p::N)
 
    recip(r)
 end
+
+^(a::DD,i::Int) = npow(a,i)
