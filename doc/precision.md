@@ -33,9 +33,9 @@
 | csch, sech, coth  | | ?  |  |
 |      |            |     |       |
 |      |            |     |       |
-| asinh  | -1024..1024     | 106 | 2e-32 |
-| acosh  |  1..1024     | 106 | 2e-32 |
-| atanh  | -1..1   | 106 | 2e-32 |
-| acsch, asech, acoth  | | accordingly  |  |
+| asinh  | -1..1     | ? | ? |
+| acosh  |  1..16     | ? | ? |
+| atanh  | -1..1   | ? | ? |
+| acsch, asech, acoth  | | ?  |  |
 
 ** 64G = 4096^3 **
