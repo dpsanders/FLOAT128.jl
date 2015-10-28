@@ -17,6 +17,11 @@ end
     (a == b.hi) && (b.lo == zero(Float64))
 end
 
+@inline (==)(a::DD,b::DD) = (a.hi == b.hi) && (a.lo == b.lo)
+@inline (<)(a::DD,b::DD) = (a.hi < b.hi) || (a.hi==b.hi && a.lo<b.lo)
+@inline (<=)(a::DD,b::DD) =  (a.hi < b.hi) || (a.hi==b.hi && a.lo<=b.lo)
+@inline (>)(a::DD,b::DD) = (a.hi > b.hi) || (a.hi==b.hi && a.lo>b.lo)
+@inline (>=)(a::DD,b::DD) = (a.hi > b.hi) || (a.hi==b.hi && a.lo>=b.lo)
 
 
 
