@@ -34,9 +34,10 @@ promote_rule(::Type{DD}, ::Type{Int64}) = DD
 promote_rule(::Type{DD}, ::Type{Int32}) = DD
 
 
+const epseps1 = eps(eps(1.0))
+
 function clean(x::DD)
-    ep = eps(eps(1.0))
-    if (abs(x.hi) <= ep)
+    if (abs(x.hi) <= epseps1)
         zero(DD)
     elseif (abs(x.lo) <= eps(eps(x.hi)))
         DD(x.hi,0.0)
