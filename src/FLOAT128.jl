@@ -62,6 +62,7 @@ include("atrig/TD.jl")
 # trigh
 include("trigh/DD.jl")
 include("trigh/TD.jl")
+include("atrigh/DD.jl")
 
 # io
 include("io/DD.jl")
