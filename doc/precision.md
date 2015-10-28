@@ -22,6 +22,7 @@
 | tan  | -64Gpi..64Gpi   | 103 | 5.9e-32 | t |
 | csc, sec, cot | -64Gpi..64Gpi | 103 | 8.8e-32 | t |
 |      |             |     |       |
+| cosh  | -1..1   | 105 | 1.7e-32 | t |
 | sinh, cosh, tanh  | -16..16   | 103 | 6e-32 |
 | csch, sech, coth  | | accordingly  |  |
 |      |            |     |       |
