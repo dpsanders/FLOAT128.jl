@@ -119,7 +119,7 @@ function asecNear1(x::DD)
     szm1sqrt2 = szm1*dd_sqrt2
     szm1sq = szm1*szm1
     szm1sqsqrt2 = szm1sq * dd_sqrt_2
-    nr = acscNear1inner(abs(x))
+    nr = asecNear1inner(abs(x))
     a = nr * szm1sqsqrt2
     b = a / 359316217732792320.0
     b = -b
