@@ -60,15 +60,16 @@ end
 
 function tanh(x::DD)
   isneg, abs_a = signbit(x), abs(x)
-  if abs_a.hi < 1.0e-15
-      t = (exp(abs_a)-exp(-abs_a)) / (exp(abs_a)+exp(-abs_a))
-      t = cosh(x)*t
+  if abs_a.hi > 0.05
+      ea = exp(abs_a)
+      inv_ea = exp(-abs_a) # do not use 1/ea here
+      t = (ea - inv_ea) / (ea + inv_ea)
   else    
-      epx = exp(abs_a)
-      emx = exp(-abs_a) # do not use 1.0/exp(x) here
-      n = (epx - emx)
-      d = (epx + emx)
-      t = n/d
+      s = sinh(abs_a)
+      c = s*s
+      c = 1.0 - c
+      c = sqrt(c)
+      t = s/c
   end    
   isneg ? -t : t
 end
