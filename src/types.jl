@@ -1,4 +1,5 @@
 typealias SignedInt Union{Int128,Int64,Int32,Int16}
+typealias MachineFloat Union(Float64,Float32,Float16}
 
 """
 The internal structure is 128 bits given as a magnitude-ordered pair of Float64 values.\\
