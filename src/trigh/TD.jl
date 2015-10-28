@@ -55,7 +55,7 @@ end
 
 function tanh(x::TD)
   epx = exp(x)
-  emx = 1.0/epx
+  emx = exp(-x) # do not use 1.0/exp(x) here
   n = (epx - emx)
   d = (epx + emx)
   n/d
