@@ -45,6 +45,10 @@ function clean(x::DD)
     end
 end
 
+clean(v::Vector{DD}) = [clean(x) for x in v]
+clean(m::Matrix{DD}) = reshape([clean(x) for x in m],size(m))
+clean(a::Array{DD}) = reshape([clean(x) for x in a],size(a))
+
 
 zero(::Type{DD}) = DD(zero(Float64),zero(Float64))
 zero(a::DD)      = zero(DD)
