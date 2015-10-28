@@ -6,7 +6,7 @@ end
 
 sinh(a::DD) = DD(sinhAsTD(a))
 
-@inline function cosh(a::DD)
+@inline function coshAsTD(a::DD)
   #x=TD(a)
   divby2(exp(a) + exp(-a))
 end
