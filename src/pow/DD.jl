@@ -115,3 +115,23 @@ function nroot{T<:DD,N<:Integer}(a::T,p::N)
 end
 
 ^(a::DD,i::Int) = npow(a,i)
+
+function (^)(a::DD,r::Float64)
+    p = 1.0/r
+    if (p == trunc(p))
+       nroot(a,trunc(Int,p))
+    else
+       exp(r * log(a))
+    end
+end
+
+function (^)(a::DD,r::DD)
+    p = 1.0/r
+    if (p == trunc(p.hi))
+       nroot(a,trunc(Int,p.hi))
+    else
+       exp(r * log(a))
+    end
+end
+
+(^)(a::Float64,r::DD) = (^)(DD(a),r)
