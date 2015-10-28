@@ -26,6 +26,8 @@ import Base: convert, promote_rule,
 export Float128, clean
 
 # include
+include("util/iswithin.jl")
+
 include("types.jl")
 
 # error-free transformations by number of args in & vals out
