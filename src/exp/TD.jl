@@ -64,3 +64,25 @@ const td_inv_fact = TD[
       TD(5.043860616493007e-88, -3.178797157619149e-104, 2.613713035752867e-120),
       TD(7.881032213270323e-90, -4.96687055877992e-106, 4.0839266183638546e-122)
   ];
+
+function exp_taylor(a::TD)
+  x = a
+  x2 = x*x
+  x3 = x*x2
+  x4 = x2*x2
+  x5 = x2*x3
+  x10 = x5*x5
+  x15 = x5*x10
+  x20 = x10*x10
+  x25 = x10*x15
+
+  z = x + td_inv_fact[2]*x2 + td_inv_fact[3]*x3 + td_inv_fact[4]*x4
+  z2 = x5 * (td_inv_fact[5] + x*td_inv_fact[6] + x2*td_inv_fact[7] + x3*td_inv_fact[8] + x4*td_inv_fact[9])
+  z3 = x10 * (td_inv_fact[10] + x*td_inv_fact[11] + x2*td_inv_fact[12] + x3*td_inv_fact[13] + x4*td_inv_fact[14])
+  z4 = x15 * (td_inv_fact[15] + x*td_inv_fact[16] + x2*td_inv_fact[17] + x3*td_inv_fact[18] + x4*td_inv_fact[19])
+  z5 = x20 * (td_inv_fact[20] + x*td_inv_fact[21] + x2*td_inv_fact[22] + x3*td_inv_fact[23] + x4*td_inv_fact[24])
+  z6 = x25 * (td_inv_fact[25] + x*td_inv_fact[26] + x2*td_inv_fact[27])
+
+  ((((z6+z5)+z4)+z3)+z2)+z + one(DD)
+end
+
