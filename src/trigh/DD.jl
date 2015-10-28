@@ -58,8 +58,8 @@ end
 function tanh(x::DD)
   isneg, abs_a = signbit(x), abs(x)
   if abs_a.hi < 1.0e-15
-      #t = (exp(abs_a)-exp(-abs_a)) / (exp(abs_a)+exp(-abs_a))
-      t = cosh(x)*tanh_taylor_series(x)
+      t = (exp(abs_a)-exp(-abs_a)) / (exp(abs_a)+exp(-abs_a))
+      t = cosh(x)*t
   else    
       epx = exp(abs_a)
       emx = exp(-abs_a) # do not use 1.0/exp(x) here
