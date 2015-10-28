@@ -5,23 +5,23 @@
   relative errors (*max found with 24,000 random double-double values each function*)
 
 
-| func | over | good bits | rel err |
-|------|------|-----------|---------|
-| sqrt | 1e-42..4e15 | 107 | 3e-33 |
-|      |             |     |       |
-| exp  | -50..50   | 104 | 5e-32 |
-| log  |    1..512   | 107 | 3e-33 |
-|      |             |     |       |
-| exp  | -300..300   | 103 | 6e-32 |
-| log  |    1..512   | 107 | 3e-33 |
-|      |             |     |       |
-| sin, cos  | -2pi..2pi   | 104 | 5e-32 |
-| tan  | -2pi..2pi   | 103 | 6e-32 |
-| csc, sec, cot  | | accordingly  |  |
-|      |             |     |       |
-| sin, cos  | -8pi..8pi   | 101 | 4e-31 |
-| tan  | -8pi..8pi   | 100 | 8e-31 |
-| csc, sec, cot  | | accordingly  |  |
+| func | over | good bits | rel err | 20,0000 |
+|------|------|-----------|---------|---------|
+| sqrt | 1e-42..4e15 | 107 | 3e-33 |  |
+|      |             |     |       |  |
+| exp  | -50..50   | 104 | 5e-32 |  |
+| log  |    1..512   | 107 | 3e-33 | |
+|      |             |     |       | |
+| exp  | -300..300   | 103 | 6e-32 | |
+| log  |    1..512   | 107 | 3e-33 | |
+|      |             |     |       | |
+| sin, cos  | -2pi..2pi   | 106 | 1.2e-32 | t |
+| tan  | -2pi..2pi   | 104 | 4.8e-32 | t |
+| csc, sec, cot | -2pi..2pi | 104 | 4.8e-32 | t |
+|      |             |     |       | |
+| sin, cos  | -4Kpi..4Kpi   | 105 | 2.25-32 | t |
+| tan  | -4Kpi..4Kpi   | 103 | 5.9e-32 | t |
+| csc, sec, cot | -4Kpi..4Kpi | 103 | 8.8e-32 | t |
 |      |             |     |       |
 | sinh, cosh, tanh  | -16..16   | 103 | 6e-32 |
 | csch, sech, coth  | | accordingly  |  |
