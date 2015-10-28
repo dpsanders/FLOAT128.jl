@@ -45,17 +45,13 @@ function clean(x::DD)
     end
 end
 
-const Zer127 = DD(zero(Float64), zero(Float64))
-const One127 = DD(one(Float64), zero(Float64))
-const Two127 = DD(one(Float64)+one(Float64), zero(Float64))
-const Inf127 = DD(Inf,Inf)
-const NaN127 = DD(NaN,NaN)
 
-zero(::Type{DD}) = Zer127
+zero(::Type{DD}) = DD(zero(Float64),zero(Float64))
 zero(a::DD)      = zero(DD)
-one(a::DD)       = one(DD)
-one( ::Type{DD}) = One127
+one(::Type{DD})  = DD(one(Float64),zero(Float64))
+one(a::DD)       = one(DD) 
 
+#=
 FL127(a::Float64) = DD(a, zero(Float64))
 
 function FL127{T<:Float64}(a::T, b::T)
@@ -71,6 +67,10 @@ for T in (:AbstractFloat, Integer)
     FL127(a::($T),b::($T)) = Float127(convert(Float64,a),convert(Float64,b))
   end
 end
+=#
+
+typealias Float128 DD
+
 
 #=
 Some internal computations require higher precision to meet the targeted relative error.\\
@@ -91,6 +91,12 @@ TD{T<:Float64}(a::T,b::T) = TD(a,b,zero(Float64))
 TD{T<:Float64}(a::Tuple{T}) = TD(a[1])
 TD{T<:Float64}(a::Tuple{T,T}) = TD(a[1],a[2])
 TD{T<:Float64}(a::Tuple{T,T}) = TD(a[1],a[2],a[3])
+
+
+zero(::Type{TD}) = TD(zero(Float64),zero(Float64),zero(Float64))
+zero(a::TD)      = zero(TD)
+one(::Type{TD})  = TD(one(Float64),zero(Float64),zero(Float64))
+one(a::TD)       = one(TD) 
 
 convert(::Type{TD}, a::Float64) = TD(a)
 convert(::Type{Float64}, a::TD) = a.hi
