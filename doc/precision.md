@@ -23,8 +23,8 @@
 | csc, sec, cot | -64Gpi..64Gpi | 103 | 8.8e-32 | t |
 |      |             |     |       |
 | asin, acos  | -1..1     | 106 | 8e-33 | t |
-| atan  | -1..1   | ? | ? |
-| acsc, asec, acot  | ? | ?  |  |
+| atan, acot  | -1..1   | 106 | 1.2e-32 | t |
+| acsc, asec  | ? | ?  |  |
 |      |             |     |       |
 | cosh  | -1..1   | 105 | 1.7e-32 | t |
 |      |             |     |       |
