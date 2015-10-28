@@ -1,6 +1,6 @@
-abstract BoundryPair{T <: Real}
+abstract BoundingPair{T <: Real}
 
-immutable BotTop{T} < BoundryPair
+immutable BotTop{T} < BoundingPair
     bot::T
     top::T
     
