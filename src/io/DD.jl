@@ -6,6 +6,11 @@ function show(io::IO, x::DD)
     print(io, string(DD_typename,"(",hi,", ",lo,")"))
 end
 
+function showcompact(io::IO, x::DD)
+    hi=string(x.hi)
+    print(io, hi)
+end
+
 function parse(::Type{DD}, str::AbstractString)
     if !(startswith(str,DD_typename))
         throw(ErrorException("$(DD_typename) not found in $(str)"))
