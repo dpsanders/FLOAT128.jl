@@ -1,14 +1,22 @@
 
 function sinh(x::TD)
-  divby2(exp(x) - exp(-x))
+  epx = exp(x)
+  emx = exp(-x)
+  epx = epx - emx
+  divby2(epx)
 end
 
 function cosh(x::TD)
-  divby2(exp(x) + exp(-x))
+  epx = exp(x)
+  emx = exp(-x)
+  epx = epx + emx
+  divby2(epx)
 end
 
 function tanh(x::TD)
   epx = exp(x)
   emx = exp(-x)
-  (epx - emx) / (epx + emx)
+  n = (epx - emx)
+  d = (epx + emx)
+  n/d
 end
