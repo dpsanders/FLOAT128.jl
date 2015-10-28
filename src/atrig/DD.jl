@@ -98,7 +98,7 @@ end
 # !!FIXME for 1 <= |x| < 1.005
 function acsc(x::DD)
     isneg, abs_x = signbit(x), abs(x)
-    if abs_a.hi < 1.0
+    if abs_x.hi < 1.0
       throw(ErrorException("acsc: Argument out of domain."))
       return dd_NaN
     end
@@ -107,9 +107,9 @@ function acsc(x::DD)
     elseif abs_x.hi > 1.005   
        ac = asin(1.0/(abs_x))
     else
-       ac =
+       ac = acscNear1(abs_x)
     end
-    isneg ? ac : -ac
+    isneg ? -ac : ac
 end    
        
 asec(x::DD) = acos(1.0/x)
