@@ -45,8 +45,8 @@ include("mag/TD.jl")
 # arithmetic and arithmetic support
 include("arith/DD.jl")
 include("arith/TD.jl")
-include("arith/DDsupp.jl")
-include("arith/TDsupp.jl")
+include("arith/DDmanip.jl")
+include("arith/TDmanip.jl")
 
 # integer powers, reciprocal roots
 include("pow/DD.jl")
