@@ -1,4 +1,4 @@
-const dd_INF = DD(Inf,NaN);
+const dd_Inf = DD(Inf,NaN);
 const dd_NaN = DD(NaN,NaN);
 
 const dd_zero = DD(0.0,0.0);
