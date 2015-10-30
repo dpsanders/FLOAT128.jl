@@ -23,7 +23,7 @@ import Base: convert, promote_rule,
 
 # export
 
-export Float128, clean
+export Float128, clean, Float128s
 
 # include
 
