@@ -6,13 +6,9 @@
 
 type Float128
 
-   *not yet available*
-
     convert from Float64|32|16, Int128|64|32|16, BigFloat
     
     convert to BigFloat, convert to nearest Float64|32|16 Int128|64|32|16
-    
-   *round|floor|ceil(Float64|32, Float128)*
     
     ldexp, frexp, abs, sign, signbit, trunc, floor, ceil, round, 
     
@@ -33,7 +29,9 @@ dict Float128s{Symbol, Float128}
     :zero, :one, :two, :three, :four, :sqrt2, :log2, :log10, :exp1, :pi, :twopi
     
     reciprocals :half, :quarter, :_sqrt2, :_log2, :_log10, :_exp1, :_pi, :_twopi
-
+    
+    add your own by converting from parsed BigFloat values
+    
 clean(x::Float128)
 
     zeros the low order part when it approaches eps(eps(high order part))
