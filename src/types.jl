@@ -18,11 +18,27 @@ DD{T<:Float64}(a::Tuple{T}) = DD(a[1])
 DD{T<:Float64}(a::Tuple{T,T}) = DD(a[1],a[2])
 
 convert(::Type{DD}, a::Float64) = DD(a)
+convert(::Type{DD}, a::Float32) = DD(Float64(a))
+convert(::Type{DD}, a::Float16) = DD(Float64(a))
+convert(::Type{DD}, a::Int32) = DD(Float64(a))
+convert(::Type{DD}, a::Int16) = DD(Float64(a))
+function convert(::Type{DD}, a::Int64)
+   isneg, aa= signbit(a), abs(a)
+   if aa < 0.0
+      DD(ldexp(Float64(typemin(Int64)>>11),11),0.0)
+   elseif aa <= 9007199254740992
+      DD(convert(Float64,a))
+   else
+      hi = ldexp(convert(Float64,(aa>>11)),11)
+      lo = convert(Float64, (aa & 4095))
+      hi,lo = eftSum2(hi,lo)
+      isneg ? DD(-hi,-lo) : DD(hi,lo)
+   end
+end
+
 convert(::Type{Float64}, a::DD) = a.hi
 convert{T<:SignedInt}(::Type{DD}, a::T) = DD(convert(Float64,a))
 convert{T<:SignedInt}(::Type{T}, a::DD) = convert(T,floor(a.hi))+convert(T,round(a.lo))
-
-import Base:Tuple # needed??
 
 convert(::Type{DD}, a::Tuple{Float64}) = DD(a[1])
 convert(::Type{DD}, a::Tuple{Float64,Float64}) = DD(a[1],a[2])
