@@ -74,3 +74,21 @@ const dd_1_over_log2_part4 = DD(3.1030020372190077e-99,1.9878535252881986e-115);
 const dd_sin_3pi_over_8 = DD(0.9238795325112867, 1.7645047084336677e-17);
 const dd_cos_3pi_over_8 = DD(0.3826834323650898, -1.0050772696461588e-17);
 
+Float128s = Dict{AbstractString,DD}(
+    "0" => dd_zero,
+    "1" => dd_one,
+    "2" => dd_two,
+    "1/2" => dd_half,
+    "sqrt2" => dd_sqrt2,
+    "1/sqrt2" => dd_1_over_sqrt2,
+    "log2" => dd_log2,
+    "1/log2" => dd_1_over_log2,
+    "log10" => dd_log10,
+    "1/log10" => dd_1_over_log10,
+    "exp1" => dd_exp1,
+    "1/exp1" => dd_1_over_exp1,
+    "pi" => dd_pi,
+    "1/pi" => dd_1_over_pi,
+    "2pi" => dd_twopi,
+    "1/2pi" => dd_1_over_twopi
+);
