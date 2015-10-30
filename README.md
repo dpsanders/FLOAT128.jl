@@ -6,13 +6,13 @@
 
 type Float128
 
-    *not yet available*
+   *not yet available*
 
     convert from Float64|32|16, Int128|64|32|16, BigFloat
     
     convert to BigFloat, convert to nearest Float64|32|16 Int128|64|32|16
     
-    *round|floor|ceil(Float64|32, Float128)*
+   *round|floor|ceil(Float64|32, Float128)*
     
     ldexp, frexp, abs, sign, signbit, trunc, floor, ceil, round, 
     
