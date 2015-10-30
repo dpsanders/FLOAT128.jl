@@ -74,6 +74,11 @@ const dd_1_over_log2_part4 = DD(3.1030020372190077e-99,1.9878535252881986e-115);
 const dd_sin_3pi_over_8 = DD(0.9238795325112867, 1.7645047084336677e-17);
 const dd_cos_3pi_over_8 = DD(0.3826834323650898, -1.0050772696461588e-17);
 
+const dd_golden_ratio = DD(1.618033988749895,-5.432115203682506e-17);
+const dd_1_over_golden_ratio = DD(0.6180339887498949,-5.432115203682506e-17);
+const dd_catalan = DD(0.915965594177219,3.747558421514984e-18);
+const dd_eulergamma = DD(0.5772156649015329,-4.942915152430645e-18);
+
 Float128s = Dict{Symbol,DD}(
     :zero    => dd_zero,
     :quarter => dd_qrtr,
@@ -88,6 +93,14 @@ Float128s = Dict{Symbol,DD}(
     :exp1    => dd_exp1,
     :pi      => dd_pi,
     :twopi   => dd_twopi,
+    :catalan => dd_catalan,
+    :π       => dd_pi,
+    :e       => dd_exp1,
+    :eu      => dd_exp1,
+    :φ       => dd_golden_ratio,
+    :golden  => dd_golden_ratio,
+    :γ       => dd_eulergamma,
+    :eulergamma => dd_eulergamma,
     :_two    => dd_half,
     :_three  => dd_third,
     :_four   => dd_qrtr,
