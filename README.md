@@ -30,7 +30,7 @@ dict Float128s{Symbol, Float128}
 
 clean(x::Float128)
 
-    zeros the low order part when it is less than eps(eps(high order part))
+    zeros the low order part when it approaches eps(eps(high order part))
 
 ### Use
 
