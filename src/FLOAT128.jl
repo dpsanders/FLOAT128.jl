@@ -23,7 +23,9 @@ import Base: convert, promote_rule,
 
 # export
 
-export Float128, clean, Float128s
+export Float128, clean, Float128s,
+# for development only
+fnTest, fnTest2, hilo, hml, nearest12
 
 # include
 
@@ -73,5 +75,8 @@ include("atrigh/DD.jl")
 include("io/DD.jl")
 include("io/TD.jl")
 
-
+# for development only
+include("../test/util/nearest.jl")
+include("../test/util/randnums.jl")
+include("../test/util/testit.jl")
 end # module
