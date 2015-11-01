@@ -30,8 +30,7 @@
 | sinh, cosh, tanh  | -1..1   | 104 | 4.5e-32 | t |
 | sinh, cosh, tanh  | -256..256   | 104 | 4.5e-32 | t |
 | csch, sech, coth  | -1..1| 104  | 4.6e-32 | t |
-| sinh, cosh, tanh  | -256..256   | 103 | 6.7e-32 | t |
-|      |            |     |       |
+| csch, sech, coth  | -256..256   | 103 | 6.7e-32 | t |
 |      |            |     |       |
 | asinh  | -1..1     | ? | ? |
 | acosh  |  1..16     | ? | ? |
