@@ -18,6 +18,46 @@ const dd_tanh_coeff = DD[
   TD(4.294911078273806e-7, 1.1643520863702653e-23)
 ];
 
+function sinh_taylor_series(a::DD)
+  x = a
+  x2 = x*x
+  x3 = x*x2
+  x4 = x2*x2
+  x5 = x2*x3
+  x6 = x3*x3
+  x7 = x3*x4
+  x8 = x4*x4
+  x9 = x4*x5
+  x17 = x8*x9
+  x25 = x17*x8
+
+  z = TD(x) + x*(dd_inv_fact[3]*x2 + dd_inv_fact[5]*x4 + dd_inv_fact[7]*x6)
+  z2 = x9 * (dd_inv_fact[9] + x2*dd_inv_fact[11] + x4*dd_inv_fact[13] + x6*dd_inv_fact[15])
+  z3 = x17 * (dd_inv_fact[17] + x2*dd_inv_fact[19] + x4*dd_inv_fact[21] + x6*dd_inv_fact[23])
+  z4 = x25 * (dd_inv_fact[25] + x2*dd_inv_fact[27] + x4*dd_inv_fact[29] + x6*dd_inv_fact[31])
+
+  DD(z + ((z4+z3)+z2))
+end
+
+function cosh_taylor_series(a::DD)
+  x = a
+  x2 = x*x
+  x4 = x2*x2
+  x6 = x2*x4
+  x8 = x4*x4
+  x16 = x8*x8
+  x24 = x8*x16
+
+  z = (dd_inv_fact[2]*x2 + dd_inv_fact[4]*x4 + dd_inv_fact[6]*x6)
+  z2 = x8 * (dd_inv_fact[8] + x2*dd_inv_fact[10] + x4*dd_inv_fact[12] + x6*dd_inv_fact[14])
+  z3 = x16 * (dd_inv_fact[16] + x2*dd_inv_fact[18] + x4*dd_inv_fact[20] + x6*dd_inv_fact[22])
+  z4 = x24 * (dd_inv_fact[24] + x2*dd_inv_fact[26] + x4*dd_inv_fact[28] + x6*dd_inv_fact[30])
+
+  ((z4+z3)+z2)+z + 1.0
+end
+
+
+
 function tanh_taylor_series(radian::DD)
   x = radian
   x2 = x*x
@@ -43,19 +83,28 @@ end
 
 function sinh(x::DD)
   isneg, abs_a = signbit(x), abs(x)
-  epx = exp(abs_a)
-  emx = 1.0/epx
-  epx = epx - emx
-  s = divby2(epx)
+  if (abs_a.hi <= 0.1)
+     s = sinh_taylor_series(abs_a)
+  else
+     epx = exp(abs_a)
+     emx = 1.0/epx
+     epx = epx - emx
+     s = divby2(epx)
+  end   
   isneg ? -s : s
 end
 
 function cosh(x::DD)
   abs_a = abs(x)
-  epx = exp(abs_a)
-  emx = 1.0/epx
-  epx = epx + emx
-  divby2(epx)
+  if abs_a.hi <= 0.1
+      c = cosh_taylor_series(abs_a)
+  else    
+      epx = exp(abs_a)
+      emx = 1.0/epx
+      epx = epx + emx
+      c = divby2(epx)
+  end
+  c
 end
 
 function tanh(x::DD)
