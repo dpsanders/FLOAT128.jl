@@ -32,7 +32,7 @@
 | csch, sech, coth  | -1..1| 104  | 4.6e-32 | t |
 | csch, sech, coth  | -256..256   | 103 | 6.7e-32 | t |
 |      |            |     |       |
-| asinh  | -1..1     | ? | ? |
+| asinh  | -1..1     | 105 | 2.2e-32 | t |
 | acosh  |  1..16     | ? | ? |
 | atanh  | -1..1   | ? | ? |
 | acsch, asech, acoth  | | ?  |  |
