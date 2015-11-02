@@ -3,12 +3,13 @@
 100+ valid significand bits for elementary functions with conventionally small values.
 
   relative errors (*max found with 20,000 random double-double values each function*)
-  relative time is fn(Float128)/fn(Float64), avg time over 20,000 evals (on 1 machine, so ymmv)
   
-  relative big is fn(Float128)/fn(BigFloat_160) " 
+  ∝64 is time fn(Float128)/fn(Float64), avg time over 20,000 evals (on 1 machine, so ymmv)
+  
+  ∝Big is time n(Float128)/fn(BigFloat_160)  similarly
 
 
-| func | over | sig bits | rel err | *Float64 | *BigFloat |
+| func | over | sig bits | rel err | ∝64 |  ∝Big |
 |------|------|-----------|---------|---------|---------|
 | sqrt | 0..64G | 106 | 1.2e-32 | 1.35 | 1.06 |
 |      |             |     |       |  | |
