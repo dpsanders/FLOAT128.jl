@@ -2155,7 +2155,7 @@ function sincos(void sincos(a::DD)
   u = cos_table[abs_k]
   v = sin_table[abs_k]
 
-  if (j == 0) {
+  if (j == 0)
     if (k > 0)
       sin_a = u * sin_t + v * cos_t;
       cos_a = u * cos_t - v * sin_t;
