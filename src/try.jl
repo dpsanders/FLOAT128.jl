@@ -2079,9 +2079,9 @@ function sincos_taylor(a::DD)
   sin_a = zero(DD)
   cos_a = one(DD)
 
-  if (a==zero(DD)) {
+  if (a==zero(DD))
      return sin_a, cos_a
-  }
+  end
 
   x = -sqr(a)
   s = a
