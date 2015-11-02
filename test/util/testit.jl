@@ -35,7 +35,7 @@ relerr(xIdeal::TD,xActual::TD) = relerr(DD(xIdeal), DD(xActual))
 
 #julia> r=[abs(tst3()) for i in 1:20000];sort(r)[end]
 
-function runFnTest(fn::Function, n::Int=20_000, bitgap::Function=wideBitgap, expow2::Function=expon)
+function runFnTestWide(fn::Function, n::Int=20_000, bitgap::Function=wideBitgap, expow2::Function=expon)
     src = zeros(DD,n)
     err = zeros(Float64,n)
     rerr = TD(0.0)
@@ -56,16 +56,9 @@ function runFnTest(fn::Function, n::Int=20_000, bitgap::Function=wideBitgap, exp
     serr, rerr
 end
 
-function fnTest(fn::Function, n::Int=20_000, bitgap::Function=wideBitgap, expow2::Function=expon)
-    #src, err = runFnTest(fn,n,bitgap,expow2)
-    #maxerr = sort(err)[end]
-    #srcmaxerr = src[ maxerr .== err ][1]
-    srcmaxerr,maxerr=runFnTest(fn,n,bitgap,expow2)
-    frexp(maxerr)[2], maxerr, srcmaxerr
-end
 
 
-function runFnTest2(fn::Function, n::Int=20_000, lo::Float64=0.0, hi::Float64=1.0, bitgap::Function=baseBitgap)
+function runFnTest(fn::Function, n::Int=20_000, lo::Float64=0.0, hi::Float64=1.0, bitgap::Function=baseBitgap)
     src = zeros(DD,n)
     err = zeros(Float64,n)
     rerr = DD(0.0)
@@ -90,17 +83,39 @@ function runFnTest2(fn::Function, n::Int=20_000, lo::Float64=0.0, hi::Float64=1.
     serr,rerr
 end
 
-function fnTest2(fn::Function, n::Int=20_000, lo::Float64=0.0, hi::Float64=1.0, bitgap::Function=baseBitgap)
+function fnTestWide(fn::Function, n::Int=20_000, bitgap::Function=wideBitgap, expow2::Function=expon)
+    #src, err = runFnTest(fn,n,bitgap,expow2)
+    #maxerr = sort(err)[end]
+    #srcmaxerr = src[ maxerr .== err ][1]
+    srcmaxerr,maxerr=runFnTesWidet(fn,n,bitgap,expow2)
+    frexp(maxerr)[2], maxerr, srcmaxerr
+end
+
+function fnTest(fn::Function, n::Int=20_000, lo::Float64=0.0, hi::Float64=1.0, bitgap::Function=baseBitgap)
     #src, err = runFnTest2(fn,n,lo,hi,bitgap)
     #maxerr = sort(err)[end]
     #srcmaxerr = src[ maxerr .== err ][1]
     #frexp(maxerr)[2], maxerr, srcmaxerr
-    srcmaxerr,maxerr=runFnTest2(fn,n,lo,hi,bitgap)
+    srcmaxerr,maxerr=runFnTest(fn,n,lo,hi,bitgap)
     frexp(maxerr)[2], maxerr, srcmaxerr
 end
 
 
 
+
+function runFnTestWideTD(fn::Function, n::Int=20_000, bitgap::Function=wideBitgap, expow2::Function=expon)
+    src = zeros(TD,n)
+    err = zeros(Float64,n)
+    for i in 1:n
+        r = randhml(bitgap,expow2)
+        src[i] = r
+        ideal = besthml(fn,r)
+        actual = fn(r)
+        rerr = relerr(ideal,actual)
+        err[i] = rerr
+    end
+    src, err
+end
 
 function runFnTestTD(fn::Function, n::Int=20_000, bitgap::Function=wideBitgap, expow2::Function=expon)
     src = zeros(TD,n)
@@ -116,9 +131,20 @@ function runFnTestTD(fn::Function, n::Int=20_000, bitgap::Function=wideBitgap, e
     src, err
 end
 
-function fnTestTD(fn::Function, n::Int=20_000, bitgap::Function=wideBitgap, expow2::Function=expon)
-    src, err = runFnTestTD(fn,n,bitgap,expow2)
-    maxerr = sort(err)[end]
-    srcmaxerr = src[ maxerr .== err ][1]
+function fnTestWideTD(fn::Function, n::Int=20_000, bitgap::Function=wideBitgap, expow2::Function=expon)
+    #src, err = runFnTest(fn,n,bitgap,expow2)
+    #maxerr = sort(err)[end]
+    #srcmaxerr = src[ maxerr .== err ][1]
+    srcmaxerr,maxerr=runFnTesWideTD(fn,n,bitgap,expow2)
     frexp(maxerr)[2], maxerr, srcmaxerr
 end
+
+function fnTestTD(fn::Function, n::Int=20_000, lo::Float64=0.0, hi::Float64=1.0, bitgap::Function=baseBitgap)
+    #src, err = runFnTest2(fn,n,lo,hi,bitgap)
+    #maxerr = sort(err)[end]
+    #srcmaxerr = src[ maxerr .== err ][1]
+    #frexp(maxerr)[2], maxerr, srcmaxerr
+    srcmaxerr,maxerr=runFnTestTD(fn,n,lo,hi,bitgap)
+    frexp(maxerr)[2], maxerr, srcmaxerr
+end
+
