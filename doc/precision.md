@@ -3,7 +3,7 @@
 100+ valid significand bits for elementary functions with conventionally small values.
 
   relative errors (*max found with 20,000 random double-double values each function*)
-  relative time is fn(Float128)/fn(Float64), range is best time for each, avg time for each
+  relative time is fn(Float128)/fn(Float64), avg time for each
 
 
 | func | over | sig bits | rel err | rel time |
@@ -15,7 +15,7 @@
 |      |             |     |       | |
 | log  |    1..64G   | 105 | 1.9e-33 |4.5-5.0 |
 |      |             |     |       | |
-| sin, cos  | -2pi..2pi   | 106 | 1.2e-32 | 2.2-3.0 |
+| sin, cos  | -2pi..2pi   | 106 | 1.2e-32 | 3.5 |
 | tan  | -2pi..2pi   | 104 | 4.8e-32 | 10 |
 | csc, sec, cot | -2pi..2pi | 104 | 4.8e-32 | t |
 |      |             |     |       | |
