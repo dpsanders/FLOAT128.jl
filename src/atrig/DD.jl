@@ -81,7 +81,7 @@ function atan(x::DD)
     isneg ? -t : t
 end
 
-function atan01numer(x::DD)
+function atan0to1numer(x::DD)
     DD(3.634218276795851e-35, 1.1608195410197176e-51) + 
     (DD(0.9996754552053311, 1.9702966146428887e-17) +
     (DD(0.025558126847631146, -5.979822891950115e-20) +
@@ -90,7 +90,7 @@ function atan01numer(x::DD)
     (DD(0.20008695643689048, -1.2305654852211964e-17) +
     DD(0.001731434275549084, -5.73980376483008e-20) * x) *x)*x)*x)*x)*x
 end
-function atan01denom(x::DD)
+function atan0to1denom(x::DD)
     DD(0.9996754552053311, 1.9702966146429673e-17) +
     (DD(0.025558126847631146, -5.979823173758132e-20) +
     (DD(1.3634837114554037, -1.0920912068946372e-16) +
@@ -99,10 +99,10 @@ function atan01denom(x::DD)
     (DD(0.00608642367523561, 1.9974177474632684e-19) +
     DD(0.02166284898435219, -4.717642657174749e-19) * x) *x)*x)*x)*x)*x
 end
-@inline atan01of64(x::DD) = atan01numer(x) / atan01denom(x)
+@inline atan0to1of64(x::DD) = atan0to1numer(x) / atan0to1denom(x)
 
 
-function atan12numer(x::DD)
+function atan1to2numer(x::DD)
     DD(1.5278264561303219, -1.2867402346329325e-17) +
     (DD(0.9974155593117758, 4.9513755772146475e-17) +
     (DD(0.07649162133622474, -4.11004144679807e-18) +
@@ -111,7 +111,7 @@ function atan12numer(x::DD)
     (DD(0.20089995807489613, 4.226298636256177e-18) +
     DD(0.0051959782962898325, -4.0424436727192866e-19) * x) *x)*x)*x)*x)*x
 end
-function atan12denom(x::DD)
+function atan1to2denom(x::DD)
    DD(0.9974155593117758, 4.951385120230031e-17) +
    (DD(0.07649162133622474, -4.13582696620576e-18) +
    (DD(1.3628153574770163, -9.79105240468648e-17) +
@@ -120,7 +120,7 @@ function atan12denom(x::DD)
    (DD(0.01824736387309365, 2.75204197960103e-19) +
    DD(0.002182107632598803, -7.914334877294892e-21)*x) *x)*x)*x)*x)*x
 end
-@inline atan12of64(x::DD) = atan12numer(x) / atan12denom(x)
+@inline atan1to2of64(x::DD) = atan1to2numer(x) / atan1to2denom(x)
 
 
 
