@@ -358,6 +358,8 @@ function exp(a::DD)
     isneg, aa = signbit(a.hi), abs(a)
     if a.hi == Inf
          return sb ? zero(DD) : a
+    elseif a == zero(DD)
+         return one(DD)
     end
 
     if aa.hi <= 0.0001220703125 # sqrt(sqrt(eps(1.0)))
