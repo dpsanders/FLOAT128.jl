@@ -214,7 +214,7 @@ function atan5to6denom(x::DD)
 end
 @inline atan5to6of64(x::DD) = atan5to6numer(x) / atan5to6denom(x)
 
-
+#=
 function atan6to7numer(x::DD)
     DD(4.08258884792285e-17, 1.9801226085996085e-33) +
     (DD(0.9535145413823523, -5.236875025807137e-19) +
@@ -234,10 +234,9 @@ function atan6to7denom(x::DD)
     DD(0.024895861851288902, -5.072156320295304e-19)*x) *x)*x)*x)*x)*x
 end
 @inline atan6to7of64(x::DD) = atan6to7numer(x) / atan6to7denom(x)
+=#
 
-
-
-function atan6to7numerA(x::DD)
+function atan6to7numer(x::DD)
     DD(-1.0415085111722597e-19, -5.395102486091432e-36) +
     (DD(0.9462153358439911, -2.831401300378913e-17) +
     (DD(0.36126832267059383, 7.66314484633861e-18) +
@@ -247,7 +246,7 @@ function atan6to7numerA(x::DD)
     (DD(0.07602702590216374, 3.85069313300002e-18) +
     DD(0.020647468580854707, 1.5575316780473585e-18)*x) *x)*x)*x)*x)*x)*x
 end
-function atan6to7denomA(x::DD)
+function atan6to7denom(x::DD)
     DD(0.9462153358439911, -4.3782190107136284e-17) +
     (DD(0.3612683226705949, 2.496531220033659e-17) +
     (DD(1.5929760895892568, -8.615747353570366e-17) +
@@ -257,7 +256,7 @@ function atan6to7denomA(x::DD)
     (DD(0.09288008014809244, -3.2854050411161694e-19) +
     DD(0.008442533659821153, -4.3713113100221436e-21)*x) *x)*x)*x)*x)*x)*x
 end
-@inline atan6to7of64A(x::DD) = atan6to7numerA(x) / atan6to7denomA(x)
+@inline atan6to7of64(x::DD) = atan6to7numer(x) / atan6to7denom(x)
 
 
 # for 1 <= |x| < 1+1/320 = 1.003125
