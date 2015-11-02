@@ -2155,8 +2155,8 @@ function sincos(a::DD)
     return sin_t, cos_t
   end
 
-  u = cos_table[abs_k]
-  v = sin_table[abs_k]
+  u = dd_cos_table[abs_k]
+  v = dd_sin_table[abs_k]
 
   if (j == 0)
     if (k > 0)
