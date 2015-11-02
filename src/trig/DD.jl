@@ -409,6 +409,7 @@ end
    for radian > 4096^3 *pi
       relerr 4.2e-29 (94 bits)
 =#
+#=
 function tan(radian::DD)
    isneg, aradian = signbit(radian), abs(radian)
    if abs(radian.hi) < 9.0/64.0
@@ -425,6 +426,29 @@ function tan(radian::DD)
       t = DD(s/c)
     end
     isneg ? -t : t
+end
+=#
+
+function tan(radian::DD)
+  isneg, aradian = signbit(radian.hi), abs(radian)
+  s = c = zero(DD)
+  if aradian <= dd_pi_over_4
+      s = sin_taylor(aradian)
+      c = cos_taylor(aradian)
+   elseif aradian < dd_twopi
+      s = sinInCircle(aradian)
+      c = cosInCircle(aradian)
+   else
+      r = mod2piAsTD(aradian)
+      ddr = DD(r.hi,r.md)
+      s = sinInCircle(ddr)
+      slo = sin(r.lo)
+      c = cosInCircle(ddr)
+      clo = cos(r.lo)
+      s = s*clo+c*slo
+      c = c*clo-s*slo
+    end
+    isneg ? -s/c : s/c
 end
 
 csc(radian::DD) = recip( sin(radian) )
