@@ -20,26 +20,26 @@
 |      |             |     |       | |
 | sin, cos  | -2pi..2pi   | 106 | 1.2e-32 | 4.5 | 0.8 |
 | tan  | -2pi..2pi   | 104 | 4.8e-32 | 10 | 9.0 | 3.0 |
-| csc, sec, cot | -2pi..2pi | 104 | 4.8e-32 | t |
+| csc, sec, cot | -2pi..2pi | 104 | 4.8e-32 | t | |
 |      |             |     |       | |
-| sin, cos  | -64Gpi..64Gpi   | 105 | 2.25-32 | t |
-| tan  | -64Gpi..64Gpi   | 103 | 5.9e-32 | t |
-| csc, sec, cot | -64Gpi..64Gpi | 103 | 8.8e-32 | t |
+| sin, cos  | -64Gpi..64Gpi   | 105 | 2.25-32 | t | |
+| tan  | -64Gpi..64Gpi   | 103 | 5.9e-32 | t | |
+| csc, sec, cot | -64Gpi..64Gpi | 103 | 8.8e-32 | t | |
 |      |             |     |       |
 | asin, acos  | -1..1     | 106 | 8e-33 | 40 | 1.8 |
 | atan, acot  | -1..1   | 106 | 1.2e-32 | 40 | 2.0 |
-| acsc  | -64G..-1,1..64G | 106  | 2.5e-32  | t |
-| asec  | -4096..-1,1..4096 | 104  | 2.7e-32  | t^ |
+| acsc  | -64G..-1,1..64G | 106  | 2.5e-32  | t | |
+| asec  | -4096..-1,1..4096 | 104  | 2.7e-32  | t^ | |
 |      |             |     |       |
-| sinh, cosh, tanh  | -1..1   | 104 | 4.5e-32 | t |
-| sinh, cosh, tanh  | -256..256   | 104 | 4.5e-32 | t |
-| csch, sech, coth  | -1..1| 104  | 4.6e-32 | t |
-| csch, sech, coth  | -256..256   | 103 | 6.7e-32 | t |
+| sinh, cosh, tanh  | -1..1   | 104 | 4.5e-32 | t | |
+| sinh, cosh, tanh  | -256..256   | 104 | 4.5e-32 | t | |
+| csch, sech, coth  | -1..1| 104  | 4.6e-32 | t | |
+| csch, sech, coth  | -256..256   | 103 | 6.7e-32 | t | |
 |      |            |     |       |
-| asinh  | -1..1     | 105 | 2.2e-32 | t |
-| acosh  |  1..16     | 105 | 2.0e-32 | t |
-| atanh  | -1..1   | 109 | 1.5e-33 | t |
-| acsch, asech, acoth  | | ?  |  |
+| asinh  | -1..1     | 105 | 2.2e-32 | t | |
+| acosh  |  1..16     | 105 | 2.0e-32 | t | |
+| atanh  | -1..1   | 109 | 1.5e-33 | t | |
+| acsch, asech, acoth  | | ?  |  | |
 
 ** 64G = 4096^3 **
 
