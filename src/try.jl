@@ -1,4 +1,8 @@
 
+DD{T<:Float64}(a::T,b::T,c::T,d::T) = DD(a,b)
+TD{T<:Float64}(a::T,b::T,c::T,d::T) = TD(a,b,c)
+
+
 # Table of sin(k * pi/1024) and cos(k * pi/1024).
 dd_sin_table = DD[
   DD( 3.0679567629659761e-03, 1.2690279085455925e-19,
