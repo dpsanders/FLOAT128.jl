@@ -6,9 +6,14 @@ frval is the value used as frexp(val)[1]
 expon is the value used as frexp(val)[2]
 =#
 
+if !isdefined(:DD)
+   DD = FLOAT128.DD
+end
+if !isdefined(:TD)
+   TD = FLOAT128.TD
+end
+
 using(Distributions)
-
-
 
 baseBitgapDist = Geometric(0.435)
 wideBitgapDist = Geometric(0.235)
@@ -52,7 +57,7 @@ function randhighmedlow(bitgap::Function=wideBitgap, expow2::Function=expon)
     hi,md,lo
 end
 
-randhilo(bitgap::Function=wideBitgap, expow2::Function=expon) = DD(randhighlow(bitgap,expow2))
+randhilo(bitgap::Function=wideBitgap, expow2::Function=expon) = DD(randhighlow(bitgap,expow2)...)
 randhml(bitgap::Function=wideBitgap, expow2::Function=expon) = TD(randhighmedlow(bitgap,expow2)...)
 
-rndhilo(bg::Float64,en::Float64) = DD(rand(bg:en))
+rangedhilo(bg::Float64,en::Float64) = DD(rand(bg:en))
