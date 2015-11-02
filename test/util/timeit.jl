@@ -1,6 +1,7 @@
 
 function timeit(fn::Function, arg::Real, n::Int)
    mn = 9999999.9; mx=md=0.0;
+   a=fn(arg)
    for i in 1:n
       a = time_ns()
       b = fn(arg)
