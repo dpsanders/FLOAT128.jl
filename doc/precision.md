@@ -4,13 +4,14 @@
 
   relative errors (*max found with 20,000 random double-double values each function*)
   relative time is fn(Float128)/fn(Float64), avg time over 20,000 evals (on 1 machine, so ymmv)
+  relative big is fn(Float128)/fn(BigFloat_160) " 
 
 
 | func | over | sig bits | rel err | rel time | rel big |
 |------|------|-----------|---------|---------|---------|
 | sqrt | 0..64G | 106 | 1.2e-32 | 1.35 | 1.0 |
 |      |             |     |       |  | |
-| exp  | -15..15   | 104 | 4.9e-32 |2.75  | 0.7 |
+| exp  | -15..15   | 104 | 4.9e-32 |2.75  | 0.75 |
 | exp  | -300..300   | 103 | 5.2e-32 |t | |
 |      |             |     |       | |
 | log  |    1..64G   | 105 | 1.9e-33 |8.0 | 1.6 |
