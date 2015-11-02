@@ -2106,7 +2106,7 @@ function sincos_taylor(a::DD)
 end
 
 
-function sincos(void sincos(a::DD)
+function sincos(a::DD)
 
   sin_a = sin_t = zero(DD)
   cos_a = cos_t = one(DD)
