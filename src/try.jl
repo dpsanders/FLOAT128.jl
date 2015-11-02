@@ -1,6 +1,9 @@
 
+
 DD{T<:Float64}(a::T,b::T,c::T,d::T) = DD(a,b)
 TD{T<:Float64}(a::T,b::T,c::T,d::T) = TD(a,b,c)
+
+Base.convert{T<:Float64}(::Type{DD},a::T,b::T,c::T,d::T) = DD(a,b)
 
 
 # Table of sin(k * pi/1024) and cos(k * pi/1024).
