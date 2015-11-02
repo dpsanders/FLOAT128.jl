@@ -19,10 +19,10 @@ end
 
 function asin(a::DD)
     isneg, abs_a = signbit(a.hi), abs(a)
-    if abs_a.hi > 1.0
+    if abs_a.hi > one(Float64)
         throw(ErrorException("asin: Argument out of domain."))
         return dd_NaN
-     elseif abs_a == one(DD)
+     elseif abs_a.hi == one(Float64) && abs_a.lo == zero(Float64)
         return (a.hi >= zero(Float64) ? dd_pi_over_2 : -dd_pi_over_2)
     end
 
@@ -47,9 +47,9 @@ function acos(a::DD)
     if abs_a.hi > 1.0
       throw(ErrorException("acos: Argument out of domain."))
       return dd_NaN
-    elseif abs_a == one(DD)
+    elseif abs_a.hi == one(Float64) && abs_a.lo == zero(Float64)
       return (a.hi >= zero(Float64) ? dd_pi : zero(DD))
-    elseif abs_a == zero(DD)
+    elseif abs_a.hi == zero(Float64) && abs.lo == zero(Float64)
       return dd_pi_over_2
     end
 
