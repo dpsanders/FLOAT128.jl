@@ -10,6 +10,6 @@ function timeit(fn::Function, arg::Real, n::Int)
       md = md+c;
    end
    md1 = div(md,n)
-   Int(mn),Int(md1),div(6*Int(mn)+Int(md1),7)
+   div(6*Int(mn)+Int(md1),7)
 end
 
