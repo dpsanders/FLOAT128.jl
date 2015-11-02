@@ -554,8 +554,10 @@ function log(x::DD)
             n = floor(log(x.hi))
             y = x / dd_exp_int[trunc(Int,n)]
             log(y) + n
-        elseif (x.hi >= 1.1) # 1.1 .. x .. exp(1)
+        elseif (x.hi >= 1.25) # 1.1 .. x .. exp(1)
             logIterThrice(x)
+        elseif (x.hi >= 1.1)
+            log1p(x)
         else # 1.0 .. x .. 1.1
             log1p_taylor(x-1.0)
         end
