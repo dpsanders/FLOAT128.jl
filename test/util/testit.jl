@@ -2,6 +2,8 @@
 relerr testing
 =#
 
+set_bigfloat_precision(320);
+
 @inline abserr(xIdeal::Real,xActual::Real) = abs(xIdeal-xActual)
 relerr(xIdeal::Real,xActual::Real) = xIdeal==0 ? 0 : abserr(float(xIdeal),float(xActual))/abs(float(xIdeal))
 
