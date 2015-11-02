@@ -8,7 +8,7 @@
   relative big is fn(Float128)/fn(BigFloat_160) " 
 
 
-| func | over | sig bits | rel err | rel time | rel big |
+| func | over | sig bits | rel err | xFloat64 | xBigFloat |
 |------|------|-----------|---------|---------|---------|
 | sqrt | 0..64G | 106 | 1.2e-32 | 1.35 | 1.06 |
 |      |             |     |       |  | |
