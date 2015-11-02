@@ -2105,8 +2105,8 @@ end
 
 function sincos(void sincos(a::DD)
 
-  sin_a = zero(DD)
-  cos_a = one(DD)
+  sin_a = sin_t = zero(DD)
+  cos_a = cos_t = one(DD)
   if (a==zero(DD))
       return sin_a, cos_a
   end
@@ -2156,36 +2156,44 @@ function sincos(void sincos(a::DD)
   v = sin_table[abs_k]
 
   if (j == 0) {
-    if (k > 0) {
+    if (k > 0)
       sin_a = u * sin_t + v * cos_t;
       cos_a = u * cos_t - v * sin_t;
-    } else {
+    else
       sin_a = u * sin_t - v * cos_t;
       cos_a = u * cos_t + v * sin_t;
-    }
-  } else if (j == 1) {
-    if (k > 0) {
+    end
+  elseif (j == 1)
+    if (k > 0)
       cos_a = - u * sin_t - v * cos_t;
       sin_a = u * cos_t - v * sin_t;
-    } else {
+    else
       cos_a = v * cos_t - u * sin_t;
       sin_a = u * cos_t + v * sin_t;
-    }
-  } else if (j == -1) {
-    if (k > 0) {
+    end
+  elseif (j == -1)
+    if (k > 0)
       cos_a = u * sin_t + v * cos_t;
       sin_a =  v * sin_t - u * cos_t;
-    } else {
+    else
       cos_a = u * sin_t - v * cos_t;
       sin_a = - u * cos_t - v * sin_t;
-    }
-  } else {
-    if (k > 0) {
+    end
+  else # j != 0 && |j| != 1
+    if (k > 0)
       sin_a = - u * sin_t - v * cos_t;
       cos_a = v * sin_t - u * cos_t;
-    } else {
+    else
       sin_a = v * cos_t - u * sin_t;
       cos_a = - u * cos_t - v * sin_t;
-    }
-  }
-}
+    end
+  end # j ?= 0
+
+  sin_a, cos_a
+end
+
+
+function tan(a::DD)
+   s,c = sincos(a)
+   s/c
+end
