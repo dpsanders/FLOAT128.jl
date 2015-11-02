@@ -4,7 +4,7 @@
 
   relative errors (*max found with 20,000 random double-double values each function*)
   
-  ∝64 is time fn(Float128)/fn(Float64), avg time over 20,000 evals (on 1 machine, so ymmv)
+  ∝64 is time fn(Float128)/fn(Float64), @time (on 1 machine, so ymmv)
   
   ∝Big is time n(Float128)/fn(BigFloat_160)  similarly
 
