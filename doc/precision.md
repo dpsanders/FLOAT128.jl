@@ -5,16 +5,16 @@
   relative errors (*max found with 20,000 random double-double values each function*)
 
 
-| func | over | sig bits | rel err | checked |
+| func | over | sig bits | rel err | rel time |
 |------|------|-----------|---------|---------|
-| sqrt | 0..64G | 106 | 1.2e-32 | t |
+| sqrt | 0..64G | 106 | 1.2e-32 | 1.32 |
 |      |             |     |       |  |
-| exp  | -15..15   | 104 | 4.9e-32 |t  |
+| exp  | -15..15   | 104 | 4.9e-32 |2.5-3.0  |
 | exp  | -300..300   | 103 | 5.2e-32 |t |
 |      |             |     |       | |
-| log  |    1..64G   | 105 | 1.9e-33 |t  |
+| log  |    1..64G   | 105 | 1.9e-33 |4.5-5.0 |
 |      |             |     |       | |
-| sin, cos  | -2pi..2pi   | 106 | 1.2e-32 | t |
+| sin, cos  | -2pi..2pi   | 106 | 1.2e-32 | 2.2-2.8 |
 | tan  | -2pi..2pi   | 104 | 4.8e-32 | t |
 | csc, sec, cot | -2pi..2pi | 104 | 4.8e-32 | t |
 |      |             |     |       | |
