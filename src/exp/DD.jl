@@ -355,15 +355,16 @@ function expGT0(a::DD)
 end
 
 function exp(a::DD)
-    sb = signbit(a.hi)
-    if abs(a.hi) == Inf
+    isneg, aa = signbit(a.hi), abs(a)
+    if a.hi == Inf
          return sb ? zero(DD) : a
     end
 
-    if sb
-         recip(expGT0(abs(a)))
+    if aa.hi <= 0.0001220703125 # sqrt(sqrt(eps(1.0)))
+        DD(exp_taylor(TD(a))) 
     else
-         expGT0(a)
+       z = expGT0(aa)
+       isneg ? recip(z) : z
     end
 end
 
